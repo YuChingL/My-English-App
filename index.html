@@ -932,33 +932,42 @@ const wordDictionary = {
         // 設置預設選中狀態和按鈕啟用狀態
         window.onload = () => {
             renderCard();
+            // 設置預設選中狀態和按鈕啟用狀態
+        window.onload = () => {
+            renderCard();
+
+            // *** 新增的字典查詢邏輯 (確保 DOM 元素已載入) ***
+            const wordInput = document.getElementById('word-input');
+            const lookupBtn = document.getElementById('lookup-btn');
+
+            if (lookupBtn && wordInput) {
+                function lookupWord() {
+                    const word = wordInput.value.trim();
+                    if (word) {
+                        const oxfordUrl = `https://www.oxfordlearnersdictionaries.com/definition/english/${word}`;
+                        // 在新視窗/標籤頁中開啟查詢結果
+                        window.open(oxfordUrl, '_blank');
+                        wordInput.value = '';
+                    } else {
+                        alert("請輸入要查詢的單字！");
+                    }
+                }
+                // 附加點擊事件
+                lookupBtn.addEventListener('click', lookupWord);
+            }
+            // *** 字典查詢邏輯結束 ***
+            
+            // 初始化測驗設定
+            quizLengthOptions.forEach(btn => {
+                // ...
+            });
+        };
             // 初始化測驗設定
             quizLengthOptions.forEach(btn => {
                 if (parseInt(btn.getAttribute('data-length')) === 20) {
                     btn.classList.add('bg-blue-500', 'text-white');
                     startQuizBtn.disabled = false;
                 }
-                // --- 字典查詢邏輯 (Dictionary Lookup) ---
-const wordInput = document.getElementById('word-input');
-const lookupBtn = document.getElementById('lookup-btn');
-
-function lookupWord() {
-    const word = wordInput.value.trim();
-    if (word) {
-        // 使用 Oxford Learner's Dictionary (劍橋字典也可以用類似方法替換)
-        const oxfordUrl = `https://www.oxfordlearnersdictionaries.com/definition/english/${word}`;
-        
-        // 在新視窗/標籤頁中開啟查詢結果
-        window.open(oxfordUrl, '_blank');
-        
-        // 清空輸入框
-        wordInput.value = '';
-    } else {
-        alert("請輸入要查詢的單字！");
-    }
-}
-
-lookupBtn.addEventListener('click', lookupWord);
             });
         };
 
