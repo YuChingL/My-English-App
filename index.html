@@ -3,12 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>專業英文互動學習App</title>
-    <!-- 載入 Tailwind CSS -->
+    <title>專業英文互動學習App (Day 1-6)</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Inter', sans-serif; /* 使用乾淨的標準字體 */ 
+            font-family: 'Inter', sans-serif; /* 使用乾淨的標準字體 */
             background-color: #f7f9fb; /* 淺灰色背景 */
         }
         .card-container, .quiz-container {
@@ -121,13 +120,11 @@
 </head>
 <body class="p-4 flex flex-col items-center min-h-screen">
 
-    <!-- Header 頂部標題和模式切換 -->
     <header class="text-center mb-6 p-4 bg-white border-b border-gray-200 w-full max-w-xl">
-       <h1 class="text-3xl font-bold text-gray-800">TOEIC 短語學習模組 (Day 1-6)</h1>
-       <p class="mt-1 text-sm text-gray-500">共 300 個詞彙卡，強化記憶與情境應用</p>
+        <h1 class="text-3xl font-bold text-gray-800">TOEIC 短語學習模組 (Day 1-6)</h1>
+        <p class="mt-1 text-sm text-gray-500">共 300 個詞彙卡，強化記憶與情境應用</p>
     </header>
 
-    <!-- 模式切換標籤 -->
     <div class="flex bg-gray-100 p-1 rounded-full shadow-inner mb-8 w-full max-w-sm">
         <button id="card-mode-btn" class="flex-1 py-2 px-4 rounded-full text-sm font-bold transition-all active-tab">
             卡片學習
@@ -137,27 +134,21 @@
         </button>
     </div>
 
-    <!-- 學習卡片模式 -->
     <section id="card-mode" class="card-container flex flex-col items-center">
         <div id="card-display" class="w-full text-center mb-6">
             
-            <!-- 英文短語 + 核心翻譯 (主視覺區) -->
             <div class="p-6 bg-indigo-50 border-b-4 border-indigo-500 rounded-t-lg mb-4">
                  <p id="card-english" class="text-4xl font-extrabold text-indigo-700">Loading...</p>
                  <p id="card-chinese-core" class="text-xl font-bold text-indigo-600 mt-1">載入中...</p>
             </div>
            
-            <!-- 情境例句/翻譯 (Combined Block) -->
             <div id="context-combined-box" class="p-4 bg-yellow-50 border-l-4 border-yellow-500 rounded-lg text-left mb-4">
-                <!-- 英文情境 -->
                 <p class="text-lg font-bold text-yellow-700 mb-2 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                     情境例句 (Contextual Example)
                 </p>
-                <!-- 這裡的 innerHTML 會被 renderCard 替換為帶有 span 的單字 -->
                 <p id="card-english-context" class="text-base text-gray-700 italic border-b border-yellow-200 pb-2 mb-2">...</p>
                 
-                <!-- 中文翻譯 -->
                 <p class="text-lg font-bold text-gray-600 mb-1 flex items-center mt-3">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 21h7a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0013.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
                     中文翻譯 (Translation)
@@ -165,16 +156,13 @@
                 <p id="card-chinese-context" class="text-base text-gray-700">...</p>
             </div>
             
-            <!-- 記憶點/故事與補充用法 (Tip + Supplement Combined Block) -->
             <div id="tip-supplement-box" class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg text-left mb-6">
-                <!-- 記憶點 -->
                 <p class="text-lg font-bold text-blue-700 mb-2 flex items-center">
                     <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.01 12.01 0 002 15.428a12.04 12.04 0 0015.688 3.515 12.01 12.01 0 003.515-15.688z"></path></svg>
                     記憶點/故事 (Memory Tip)
                 </p>
                 <p id="card-tip" class="text-base text-gray-700 border-b border-blue-200 pb-2 mb-2">...</p>
                 
-                <!-- 補充用法 -->
                 <div id="card-supplement-detail" class="mt-3">
                     <p class="text-lg font-bold text-gray-700 mb-1">💡 補充用法</p>
                     <p id="card-supplement" class="text-base text-gray-700">...</p>
@@ -183,7 +171,6 @@
 
         </div>
 
-        <!-- 卡片操作按鈕 (新增跳轉按鈕) -->
         <div class="flex space-x-2 sm:space-x-4 w-full justify-center mt-4">
             <button id="card-prev-btn" class="vibe-button bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 sm:px-6 rounded-lg text-sm transition duration-150">
                 &larr; 上一個
@@ -196,7 +183,10 @@
             </button>
         </div>
 
-        <section id="dictionary-lookup" class="card-container flex flex-col items-center mt-6">
+        <div id="card-progress" class="mt-4 text-sm font-semibold text-gray-500"></div>
+    </section>
+    
+    <section id="dictionary-lookup" class="card-container flex flex-col items-center mt-6">
         <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2 w-full text-center">
             單字查詢 (Dictionary Lookup)
         </h2>
@@ -211,11 +201,10 @@
         <p class="text-sm text-gray-500 mt-2">將在新視窗開啟 Oxford Learner's Dictionary</p>
     </section>
     
-    <!-- 自定義跳轉輸入視窗 (取代 prompt) -->
     <div id="jump-modal" class="hidden fixed inset-0 bg-gray-900 bg-opacity-50 z-50 flex items-center justify-center p-4">
         <div class="bg-white p-6 rounded-xl shadow-2xl w-full max-w-xs transform scale-100">
             <h3 class="text-xl font-bold mb-4 text-gray-800">跳轉到詞彙卡</h3>
-            <p id="jump-modal-message" class="text-sm text-gray-600 mb-3">請輸入編號 (1 到 150):</p>
+            <p id="jump-modal-message" class="text-sm text-gray-600 mb-3">請輸入編號 (1 到 300):</p>
             <input type="number" id="jump-input" class="w-full p-2 border border-gray-300 rounded-lg text-lg mb-4 focus:ring-blue-500 focus:border-blue-500" min="1" max="300">
             <div class="flex justify-end space-x-3">
                 <button id="jump-cancel" class="py-2 px-4 bg-gray-200 text-gray-700 rounded-lg hover:bg-gray-300 transition">取消</button>
@@ -224,10 +213,8 @@
         </div>
     </div>
 
-    <!-- 情境測驗模式 -->
     <section id="quiz-mode" class="quiz-container flex flex-col items-center hidden">
         
-        <!-- 測驗設定區塊 (新增) -->
         <div id="quiz-settings" class="w-full text-center mb-6">
             <h2 class="text-xl font-bold text-gray-700 mb-4 border-b pb-2 w-full">設定測驗</h2>
             <p class="text-lg font-bold text-gray-700 mb-3">請選擇測驗題數：</p>
@@ -242,12 +229,10 @@
             </button>
         </div>
 
-        <!-- 測驗內容區塊 (預設隱藏) -->
         <div id="quiz-content" class="hidden w-full">
             <div class="w-full text-center mb-6">
                 <h2 id="quiz-progress" class="text-xl font-bold text-gray-600 mb-4 border-b pb-2 w-full">測驗題 1 / 20</h2>
                 
-                <!-- 題目區塊 -->
                 <div class="p-4 bg-blue-50 border-l-4 border-blue-500 rounded-lg text-left mb-6">
                     <p class="text-lg font-bold text-blue-700 mb-2 flex items-center">
                         <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c0-3.379 2.45-6.108 5.5-6.108 3.048 0 5.5 2.73 5.5 6.108 0 3.378-2.452 6.108-5.5 6.108-3.05 0-5.5-2.73-5.5-6.108zM14 17h.01"></path></svg>
@@ -256,38 +241,29 @@
                     <p id="quiz-scenario" class="text-base text-gray-700">請根據情境例句，選出最適合的英文短語：</p>
                 </div>
 
-                <!-- 選項區塊 -->
                 <div id="quiz-options-container" class="space-y-2">
-                    <!-- 選項將由 JavaScript 渲染在這裡 -->
-                </div>
+                    </div>
                 
-                <!-- 提示與結果 -->
                 <div id="quiz-feedback" class="mt-6 p-3 rounded-lg text-left text-base font-medium hidden"></div>
                 
-                <!-- 情境翻譯 (新增區塊，預設隱藏) -->
                 <div id="quiz-translation-box" class="quiz-translation-box bg-gray-50 border border-gray-200 rounded-lg text-left mt-4">
                     <p class="text-sm font-bold text-gray-700 mb-1 flex items-center">
                         <svg class="w-4 h-4 mr-1 text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path></svg>
                         情境翻譯與學習
                     </p>
-                    <!-- 英文情境 (帶懸停翻譯) -->
                     <p id="quiz-scenario-english-result" class="text-sm text-gray-700 italic border-b border-gray-200 pb-1 mb-1"></p>
-                    <!-- 中文翻譯 -->
                     <p id="quiz-scenario-chinese-result" class="text-sm text-gray-600 mt-2"></p>
                 </div>
             </div>
 
-            <!-- 測驗操作按鈕 -->
             <button id="quiz-next-btn" class="vibe-button bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg transition duration-150 mt-4 disabled:opacity-50" disabled>
                 下一題 →
             </button>
         </div>
     </section>
 
-    <!-- JavaScript 邏輯 -->
     <script>
-        // 詞彙資料 (包含 Day 1, Day 2, Day 3 的所有短語)
-        // 詞彙資料 (包含 Day 1, Day 2, Day 3, Day 4, Day 5, Day 6 的所有短語，共 300 個)
+        // *** 詞彙數據和字典 (包含 Day 1-6) ***
 const vocabData = [
     // --- Day 1 (1-50) --- (保持不變)
     { english: "a job seeker", chinese: "求職者", supplement: "seek v. 尋找", supplementExample: "He decided to seek a new career path after the layoff.", supplementExampleChinese: "他在被解僱後決定尋求新的職涯道路。", englishContext: "The company is actively looking for qualified job seekers to fill the new positions.", chineseContext: "這間公司正積極尋找合格的求職者來填補新職位。", tip: "🔎 求職者就像尋寶的偵探（seek），尋找（seek）一份好工作。" },
@@ -306,7 +282,7 @@ const vocabData = [
     { english: "a thrilling adventure", chinese: "刺激的冒險", supplement: "thrill v. 使...激動", englishContext: "Climbing Mount Everest is often described as a thrilling adventure.", chineseContext: "攀登聖母峰通常被形容為一場刺激的冒險。", tip: "⛰️ Thrilling 是令人興奮的，adventure 是冒險。" },
     { english: "a coupon code", chinese: "優惠券代碼", supplement: "code n. 代碼", englishContext: "Enter the coupon code at checkout to receive your 15% discount.", chineseContext: "請在結帳時輸入優惠券代碼以獲得您的 15% 折扣。", tip: "🎫 Coupon 是優惠券，Code 是密碼。" },
     { english: "a discount coupon", chinese: "折扣優惠券", supplement: "discount n. 折扣", englishContext: "I saved money by using a discount coupon for the new electronics.", chineseContext: "我使用了一張新電子產品的折扣優惠券省下了錢。", tip: "🏷️ Discount 是打折，coupon 是券。" },
-    { english: "a press release", chinese: "新聞稿", supplement: "release v. 發佈", englishContext: "The marketing department issued a press release to announce the merger.", chineseContext: "行銷部門發布了一份新聞稿來宣布這次的合併案。", tip: "📰 Press 是媒體，release 是發佈，發給媒體的稿子就是新聞稿。" },
+    { english: "a press release", chinese: "新聞稿", supplement: "release v. 發佈", englishContext: "The marketing department issued a press release to announce the merger.", chineseContext: "行銷部門發布了一份新聞稿來宣布這次的合併案。", chineseContext: "行銷部門發布了一份新聞稿來宣布這次的合併案。", tip: "📰 Press 是媒體，release 是發佈，發給媒體的稿子就是新聞稿。" },
     { english: "a class reunion", chinese: "同學會", supplement: "reunion n. 重聚", englishContext: "A class reunion is scheduled for alumni who graduated a decade ago.", chineseContext: "為十年前畢業的校友安排了一場同學會。", tip: "🧑‍🤝‍🧑 Class 是班級，reunion 是重聚。" },
     { english: "a weather forecast", chinese: "天氣預報", supplement: "scheduled adj.預定的", supplementExample: "The flight is scheduled to depart at 9:00 AM.", supplementExampleChinese: "這班飛機預定在早上九點起飛。", englishContext: "According to the weather forecast, the outdoor concert should be held as scheduled without rain.", chineseContext: "根據天氣預報，這場戶外音樂會應該可以如期舉行，不會下雨。", tip: "☀️ Weather 是天氣，Forecast 是「預測」，預測天氣就是天氣預報。" },
     { english: "a smooth flight", chinese: "平穩的飛行/航程", supplement: "smooth adj. 平穩的", englishContext: "Despite the turbulence, the pilot managed to maintain a smooth flight.", chineseContext: "儘管有亂流，飛行員還是設法維持了平穩的航程。", tip: "✈️ Smooth 是順暢，flight 是飛行。" },
@@ -480,8 +456,8 @@ const vocabData = [
     { english: "the next ferry to Westbrook", chinese: "去威斯布魯克的下一班渡輪", supplement: "", supplementExample: "", supplementExampleChinese: "", englishContext: "The next ferry to Westbrook is scheduled to depart at 4:30 PM from pier 3.", chineseContext: "去威斯布魯克的下一班渡輪定於下午 4:30 從 3 號碼頭出發。", tip: "🚢 Ferry 是渡輪。" },
     { english: "the next issue of Vanity Fair Magazine", chinese: "《浮華世界》雜誌下一期", supplement: "issue n.(期刊)一期;議題", supplementExample: "", supplementExampleChinese: "", englishContext: "The next issue of Vanity Fair Magazine will feature an exclusive interview with the star.", chineseContext: "《浮華世界》雜誌下一期將刊登對這位明星的獨家專訪。", tip: "📰 Issue 是期刊一期。" },
     { english: "the attached coupon for 20% off", chinese: "隨附的8折優惠券", supplement: "be attached to... 附上 貼上 20% off → 減去2成(8折)", supplementExample: "", supplementExampleChinese: "", englishContext: "Use the attached coupon for 20% off your entire purchase at the store.", chineseContext: "使用隨附的 8 折優惠券，可在店內享受整個購買商品的 8 折優惠。", tip: "🏷️ Attached 是附上的。" },
-    { english: "the recipient of the gift card", chinese: "禮品卡的接受者", supplement: "receive v. 接受", supplementExample: "", supplementExampleChinese: "", englishContext: "The recipient of the gift card can use it at any branch worldwide.", chineseContext: "禮品卡的接受者可以在全球任何分店使用它。", tip: "🎁 Recipient 是接收者。" },
-    { english: "the music industry", chinese: "音樂產業", supplement: "", supplementExample: "", supplementExampleChinese: "", englishContext: "Technological changes have significantly impacted the music industry over the last decade.", chineseContext: "技術變革在過去十年中對音樂產業產生了顯著影響。", tip: "🎵 Music 是音樂，Industry 是產業。" },
+    { english: "the recipient of the gift card", chinese: "禮品卡的接受者", supplement: "receive v. 接受", englishContext: "The recipient of the gift card can use it at any branch worldwide.", chineseContext: "禮品卡的接受者可以在全球任何分店使用它。", tip: "🎁 Recipient 是接收者。" },
+    { english: "the music industry", chinese: "音樂產業", supplement: "", englishContext: "Technological changes have significantly impacted the music industry over the last decade.", chineseContext: "技術變革在過去十年中對音樂產業產生了顯著影響。", tip: "🎵 Music 是音樂，Industry 是產業。" },
     { english: "the first/second/third/fourth quarter", chinese: "第一/第二/第三/第四季度", supplement: "quarter 商業上的「季度」 season 氣候上的「季節」", supplementExample: "", supplementExampleChinese: "", englishContext: "Sales numbers usually peak in the fourth quarter due to holiday shopping.", chineseContext: "由於假日購物，銷售數字通常在第四季度達到高峰。", tip: "🗓️ Quarter 是四季度的其中一季。" },
     { english: "the remaining 80 percent", chinese: "剩下的80%", supplement: "remain v. 剩下、遺留", supplementExample: "", supplementExampleChinese: "", englishContext: "We have finished 20% of the work; the remaining 80 percent will be completed next week.", chineseContext: "我們已經完成了 20% 的工作；剩下的 80% 將於下週完成。", tip: "8️⃣ Remaining 是剩下的。" },
     { english: "the library's rear entrance", chinese: "圖書館後門", supplement: "rear n.後面", supplementExample: "", supplementExampleChinese: "", englishContext: "For staff convenience, the delivery trucks use the library's rear entrance.", chineseContext: "為了方便員工，送貨卡車使用圖書館後門。", tip: "🚪 Rear 是後面，Entrance 是入口。" },
@@ -490,12 +466,12 @@ const vocabData = [
     { english: "the authority to change the rule", chinese: "改變規則的權力", supplement: "the authorities n.官方單位", supplementExample: "", supplementExampleChinese: "", englishContext: "Only the director has the authority to change the rule regarding office hours.", chineseContext: "只有主任有權力改變有關辦公時間的規則。", tip: "⚖️ Authority 是權威/權力。" },
     { english: "nearly ten years", chinese: "將近十年", supplement: "", supplementExample: "", supplementExampleChinese: "", englishContext: "He has been working as a journalist for nearly ten years.", chineseContext: "他擔任記者將近十年了。", tip: "🔟 Nearly 是將近。" },
     { english: "two years in a row", chinese: "連續兩年", supplement: "row n. 排", supplementExample: "", supplementExampleChinese: "", englishContext: "The restaurant won the 'Best Fine Dining' award two years in a row.", chineseContext: "這間餐廳連續兩年獲得「最佳精緻餐飲」獎。", tip: "2️⃣ In a row 是連續一排。" },
-    { english: "business hours", chinese: "營業時間", supplement: "", supplementExample: "", supplementExampleChinese: "", englishContext: "To register, call the Scott County State Bank during business hours at 752-4501.", chineseContext: "要註冊，請在營業時間致電 Scott County State 銀行，電話是 752-4501。", tip: "⏰ Business 是商業，Hours 是小時。" },
+    { english: "business hours", chinese: "營業時間", supplement: "", englishContext: "To register, call the Scott County State Bank during business hours at 752-4501.", chineseContext: "要註冊，請在營業時間致電 Scott County State 銀行，電話是 752-4501。", tip: "⏰ Business 是商業，Hours 是小時。" },
     { english: "hours of operation", chinese: "營業時間", supplement: "operate v. 運作", supplementExample: "", supplementExampleChinese: "", englishContext: "The museum's hours of operation are from 10 AM to 5 PM, seven days a week.", chineseContext: "這間博物館的營業時間是從早上 10 點到下午 5 點，一週七天。", tip: "⏰ Operation 是運作。" },
-    { english: "sales profits", chinese: "銷售利潤", supplement: "profit from... v. 從...獲益", supplementExample: "", supplementExampleChinese: "", englishContext: "The company saw a significant increase in sales profits after the successful marketing campaign.", chineseContext: "在成功的行銷活動後，公司看到了銷售利潤的顯著增長。", tip: "💰 Sales 是銷售，Profits 是利潤。" },
-    { english: "sales techniques", chinese: "銷售技巧", supplement: "", supplementExample: "", supplementExampleChinese: "", englishContext: "The training session focused on improving advanced sales techniques and negotiation skills.", chineseContext: "這次培訓課程重點在於提高先進的銷售技巧和談判能力。", tip: "🗣️ Techniques 是技巧。" },
-    { english: "discounted prices", chinese: "折扣價", supplement: "discount v. 打折n.折扣", supplementExample: "", supplementExampleChinese: "", englishContext: "All merchandise is currently offered at discounted prices for a limited time.", chineseContext: "所有商品目前都以折扣價限時提供。", tip: "🏷️ Discounted 是被打了折扣的。" },
-    { english: "competitive prices", chinese: "有競爭力的價格", supplement: "compete v.競爭 competition n.競賽 competitor n.競爭對手", supplementExample: "", supplementExampleChinese: "", englishContext: "The store aims to maintain competitive prices while still offering high-quality products.", chineseContext: "這間商店的目標是保持有競爭力的價格，同時仍提供高品質的產品。", tip: "🥊 Competitive 是有競爭力的。" },
+    { english: "sales profits", chinese: "銷售利潤", supplement: "profit from... v. 從...獲益", englishContext: "The company saw a significant increase in sales profits after the successful marketing campaign.", chineseContext: "在成功的行銷活動後，公司看到了銷售利潤的顯著增長。", tip: "💰 Sales 是銷售，Profits 是利潤。" },
+    { english: "sales techniques", chinese: "銷售技巧", supplement: "", englishContext: "The training session focused on improving advanced sales techniques and negotiation skills.", chineseContext: "這次培訓課程重點在於提高先進的銷售技巧和談判能力。", tip: "🗣️ Techniques 是技巧。" },
+    { english: "discounted prices", chinese: "折扣價", supplement: "discount v. 打折n.折扣", englishContext: "All merchandise is currently offered at discounted prices for a limited time.", chineseContext: "所有商品目前都以折扣價限時提供。", tip: "🏷️ Discounted 是被打了折扣的。" },
+    { english: "competitive prices", chinese: "有競爭力的價格", supplement: "compete v.競爭 competition n.競賽 competitor n.競爭對手", englishContext: "The store aims to maintain competitive prices while still offering high-quality products.", chineseContext: "這間商店的目標是保持有競爭力的價格，同時仍提供高品質的產品。", tip: "🥊 Competitive 是有競爭力的。" },
 
     // --- Day 5 (201-250) --- 新增詞彙 
     { english: "potted plants", chinese: "盆栽", supplement: "pot n.罐、瓶、壺", englishContext: "Several potted plants were placed near the windows to brighten up the office.", chineseContext: "一些盆栽被放置在窗戶附近，以點亮辦公室。", tip: "🪴 Potted 是放在盆裡的。" },
@@ -543,7 +519,7 @@ const vocabData = [
     { english: "personal electronics", chinese: "個人電子產品", supplement: "", englishContext: "The insurance policy covers damage to personal electronics, such as smartphones and tablets.", chineseContext: "該保險單涵蓋對個人電子產品的損壞，例如智慧型手機和平板電腦。", tip: "📱 Electronics 是電子產品。" },
     { english: "marketing strategies", chinese: "行銷策略", supplement: "", englishContext: "The team analyzed competitors' marketing strategies to gain a competitive advantage.", chineseContext: "團隊分析了競爭對手的行銷策略，以獲得競爭優勢。", tip: "📈 Marketing 是行銷，Strategies 是策略。" },
     { english: "competitors' products", chinese: "競爭對手的產品", supplement: "", englishContext: "The focus group compared our product favorably to competitors' products.", chineseContext: "焦點小組將我們的產品與競爭對手的產品進行了有利的比較。", tip: "🥊 Competitors 是競爭者。" },
-    { english: "knives and forks", chinese: "刀叉", supplement: "", englishContext: "A formal dinner setting requires two knives and forks for each guest.", chineseContext: "正式晚餐的餐具設置要求每位客人有兩把刀叉。", tip: "🍴 Knives 是刀，Forks 是叉。" },
+    { english: "knives and forks", chinese: "刀叉", supplement: "", englishContext: "A formal dinner setting requires two knives and forks for each guest.", chineseContext: "正式晚餐的餐具設置要求每位客人每位客人有兩把刀叉。", tip: "🍴 Knives 是刀，Forks 是叉。" },
     { english: "food and beverages", chinese: "食物和飲料", supplement: "", englishContext: "All employees received a complimentary ticket that includes free food and beverages.", chineseContext: "所有員工都收到了一張包含免費食物和飲料的贈票。", tip: "🍹 Beverages 是飲料。" },
     { english: "Do's and Don'ts", chinese: "準則(可做和不可做的事情)", supplement: "", englishContext: "Before starting your internship, please read the list of Do's and Don'ts.", chineseContext: "在開始實習之前，請閱讀準則清單。", tip: "✅❌ Do's 是可做的，Don'ts 是不可做的。" },
     { english: "talented dancers and singers", chinese: "才華橫溢的舞者和歌手", supplement: "", englishContext: "The theater is holding auditions to find talented dancers and singers for the new musical.", chineseContext: "劇院正在舉行試鏡，為新的音樂劇尋找才華橫溢的舞者和歌手。", tip: "🎤 Talented 是有才華的。" },
@@ -601,574 +577,560 @@ const vocabData = [
     { english: "real estate", chinese: "房地產", supplement: "", englishContext: "Investing in real estate is considered a long-term strategy for building wealth.", chineseContext: "投資房地產被認為是累積財富的長期策略。", tip: "🏠 Real estate 是不動產。" },
     { english: "construction work", chinese: "施工工程", supplement: "construct v.建設 constructive adj.有建設性的", englishContext: "The road closure is necessary due to ongoing construction work in the area.", chineseContext: "由於該地區正在進行施工工程，道路封閉是必要的。", tip: "🚧 Construction 是建設。" }
 ];
-        
-       // 額外的單詞字典 (擴充版)
+        
+        // 額外的單詞字典 (擴充版)
 const wordDictionary = {
-    // --- Day 1-3 詞彙 --- (保持不變)
-    "company": "公司", "actively": "積極地", "looking": "尋找", "qualified": "合格的", "fill": "填補", "positions": "職位", "prioritize": "優先處理", "needs": "需求", "represents": "代表", "revenue": "營收", "exchange": "交換", "networking": "社交/建立人脈", "contact": "聯繫", "use": "使用", "send": "發送", "signed": "已簽署的", "contract": "合約", "employees": "員工", "take": "拿取/利用", "broadcast": "廣播/直播", "announcement": "公告", "ensure": "確保", "submit": "提交", "necessary": "必要的", "identification": "身份證明", "documents": "文件", "conference": "會議", "renowned": "著名的", "economist": "經濟學家", "committee": "委員會", "invited": "邀請", "turnout": "投票率", "unexpectedly": "出乎意料地", "scheduled": "預定的", "rain": "雨", "exceed": "超過", "quarterly": "季度的", "targets": "目標", "receive": "收到/獲得", "substantial": "豐厚的", "benefits": "福利", "quit": "辭職", "position": "職位/職務", "local": "地方的", "event": "活動", "annual": "年度的", "sales": "銷售", "details": "細節", "check": "查看", "bulletin": "公告/布告", "board": "板子", "voter": "選民", "forecast": "預報", "outdoor": "戶外的", "concert": "音樂會", "held": "舉行", "as": "如同", "available": "可用的", "survey": "問卷", "decided": "決定", "career": "職涯", "path": "道路", "layoff": "裁員", "ad": "廣告", "agency": "代理商", "designs": "設計", "various": "各種的", "industries": "產業", "health": "健康", "well-being": "幸福感", "work": "工作", "tourists": "遊客", "currency": "貨幣", "yen": "日圓", "file": "檔案", "attachment": "附件", "email": "電子郵件", "midnight": "午夜", "artist": "藝術家", "contemporary": "當代的", "scene": "場景", "holds": "舉行", "review": "審查", "meeting": "會議", "december": "十二月", "mayor": "市長", "next": "下一個", "month": "月份", "should": "應該", "cost": "費用", "budget": "預算", "full": "完整的", "is": "是",
-            "waste": "廢棄物", "placed": "放置", "staring": "盯著看", "strain": "疲勞", "supermarket": "超市", "careful": "小心", "walk": "行走", "cleaning": "清潔", "carried": "撐著", "turbulence": "亂流", "pilot": "飛行員", "managed": "設法", "maintain": "維持", "postponed": "推遲", "unexpected": "預料之外的", "present": "出示", "enter": "進入", "gallery": "畫廊", "refer": "參考", "assigned": "分配的", "provided": "提供", "project": "項目", "goals": "目標", "pens": "筆", "notebooks": "筆記本", "goal": "目標", "become": "成為", "renewable": "再生能源", "technology": "技術", "crucial": "重要的", "building": "建立", "relationships": "關係", "coffee": "咖啡", "discuss": "討論", "proposal": "提案", "check": "檢查", "store": "商店", "purchase": "購買", "utilities": "水電費", "maintenance": "維護", "fees": "費用", "delicious": "美味的", "provided": "提供", "citizens": "公民", "voice": "表達", "concerns": "擔憂", "tax": "稅", "held": "舉行", "author": "作者", "session": "時段", "display": "展示", "dashboard": "儀表板", "temporary": "臨時的", "lot": "停車場", "recommend": "推薦", "historical": "歷史的", "castle": "城堡", "quit": "辭職", "position": "職位", "benefits": "福利", "attracts": "吸引", "thousands": "數千", "attendees": "參與者", "storm": "暴風雨", "experienced": "經歷", "widespread": "廣泛的", "bank": "銀行", "opening": "開設", "north": "北", "side": "側", "town": "城鎮", "ceo": "執行長", "expressed": "表示", "concern": "擔憂", "regions": "地區", "clearance": "清倉", "items": "商品", "offered": "提供", "liquidation": "清算", "pay": "支付", "receipt": "收據", "subscribers": "訂閱者", "whenever": "每當", "posted": "張貼", "delivered": "發表", "fascinating": "迷人的", "quantum": "量子", "physics": "物理學",
-            "waste": "廢棄物", "staring": "盯著看", "shelf": "架子", "cooling": "冷卻", "cleaning": "清潔", "inside": "內部", "carried": "撐著", "even": "甚至", "indoor": "室內的", "guests": "客人", "involved": "捲入", "patent": "專利", "rights": "權利", "force": "強行", "plug": "插頭", "fit": "合適", "temple": "寺廟", "main": "主要的", "attach": "附上", "receipts": "收據", "monthly": "每月的", "strain": "疲勞", "vision": "願景", "innovation": "創新", "quiet": "安靜的", "room": "房間", "focused": "專注的", "studying": "學習", "paintings": "畫作", "displayed": "展示", "quarter": "季度", "warranty": "保固", "claims": "索賠", "harsh": "嚴厲的", "review": "評論", "silverware": "銀器", "capacity": "容量", "optimize": "優化", "efficiency": "效率", "delays": "延誤", "hires": "僱員", "languages": "語言", "international": "國際的", "launched": "發起", "massive": "大規模的", "targeting": "針對", "consumers": "消費者", "potential": "潛在的", "investor": "投資者", "key": "關鍵的", "data": "數據", "points": "點", "decision": "決定", "approved": "批准", "proceeding": "繼續進行", "published": "出版", "findings": "發現", "prestigious": "著名的", "detailing": "詳細介紹", "hired": "僱用", "redesign": "重新設計", "garden": "花園", "prefer": "喜歡", "reserve": "預訂", "get": "起身", "easily": "容易地", "up": "向上", "storm": "暴風雨", "experienced": "經歷", "widespread": "廣泛的", "library": "圖書館", "concern": "擔憂", "items": "商品", "liquidation": "清算", "pay": "支付", "receipt": "收據", "subscribers": "訂閱者", "whenever": "每當", "posted": "張貼", "delivered": "發表", "fascinating": "迷人的", "quantum": "量子", "physics": "物理學",
-            "compete": "競爭", "requires": "需要", "intense": "密集的", "training": "訓練", "demand": "需求", "science": "科學", "waiting": "等候", "suspect": "嫌疑人", "market": "市場", "climbing": "攀登", "everest": "聖母峰", "described": "形容", "checkout": "結帳", "receiving": "收到", "merger": "合併", "alumni": "校友", "graduated": "畢業", "decade": "十年", "postponed": "推遲", "turbulence": "亂流", "pilot": "飛行員", "maintained": "維持", "dashboard": "儀表板", "temporary": "臨時的", "lot": "停車場", "historical": "歷史的", "background": "背景", "castle": "城堡", "mayor": "市長", "next": "下個月", "rewards": "獎勵", "available": "可用的", "survey": "問卷", "decided": "決定", "career": "職涯", "path": "道路", "layoff": "裁員", "ad": "廣告", "agency": "代理商", "designs": "設計", "various": "各種的", "industries": "產業",
-            "celebration": "慶祝", "ballroom": "宴會廳", "compromise": "妥協", "quality": "品質", "stunning": "驚豔的", "launch": "發布", "consulted": "諮詢", "apartment": "公寓", "handled": "處理", "complex": "複雜的", "elected": "選出", "represent": "代表", "community": "社區", "monitor": "監控", "delivery": "送貨", "status": "狀態", "fierce": "猛烈的", "salaries": "薪水", "field": "領域", "hosting": "舉辦", "landscape": "風景", "artists": "藝術家", "check-in": "辦理入住", "credited": "存入", "account": "帳戶", "beginning": "開始", "meditation": "冥想", "concise": "簡潔的", "limited": "限制", "notify": "通知", "reception": "接待處", "desk": "櫃檯", "changes": "變更", "expected": "預計的", "booking": "預訂", "confirmation": "確認單", "flight": "航班", "number": "號碼", "obtaining": "獲得", "permits": "許可證", "proved": "證明", "complicated": "複雜的", "conversion": "轉換", "model": "模型", "rejected": "否決", "lit": "有光線的", "interview": "面試", "transportation": "交通", "announced": "宣布", "regulations": "規定", "trails": "步道", "hazardous": "危險的", "policy": "政策", "updates": "最新資訊", "distributed": "發布",
-            
-            // --- Day 4 新增詞彙 ---
-            "gate": "登機門", "boarding": "登機", "time": "時間", "plumber": "水管工", "leak": "洩漏處", "under": "在...下", "fixed": "修好", "close": "關閉", "energy": "能源", "save": "節省", "streamline": "簡化", "vacant": "空缺的", "faster": "更快", "tickets": "票", "available": "可用的", "purchase": "購買", "request": "請求", "form": "表格", "hotel": "飯店", "room": "房間", "global": "全球的", "economic": "經濟的", "slowdown": "放緩", "region": "地區", "remains": "保持", "positive": "樂觀的", "contact": "聯繫", "unusual": "異常的", "transactions": "交易", "withdraw": "提取", "atm": "提款機", "per": "每個", "elegant": "優雅的", "significantly": "顯著地", "boosted": "提升了", "market": "市場", "appeal": "吸引力", "gps": "全球定位系統", "pinpoints": "精確定位", "lost": "遺失的", "device": "裝置", "result": "結果", "years": "多年", "commitment": "奉獻", "attracts": "吸引", "runners": "跑者", "scheduled": "預定的", "delay": "延遲", "safety": "安全", "ergonomics": "人體工學", "key": "關鍵的", "consideration": "考量", "long-term": "長期的", "project": "專案", "manager": "經理", "reviewed": "審查", "identify": "識別", "potential": "潛在的", "voted": "投票", "selection": "選曲", "charity": "慈善", "mutually": "共同地", "agreed": "同意的", "parties": "各方", "involved": "涉及的", "legal": "法律的", "team": "團隊", "anxiously": "焦急地", "awaited": "等待", "affect": "影響", "future": "未來", "hold": "舉行", "preparing": "準備", "meal": "餐點", "options": "選項", "prefer": "偏好", "acceptable": "可接受的", "exploded": "暴漲", "featured": "以...為特色", "guest": "來賓", "speaker": "講者", "librarian": "圖書管理員", "record": "記錄", "novel": "小說", "purchased": "購買", "advanced": "先進的", "research": "研究", "proceed": "繼續進行", "ferry": "渡輪", "pier": "碼頭", "feature": "刊登", "exclusive": "獨家的", "interview": "專訪", "entire": "全部的", "purchase": "購買", "branch": "分店", "worldwide": "全球", "technological": "技術的", "impacted": "影響", "decade": "十年", "peak": "高峰", "due": "由於", "holiday": "假日", "shopping": "購物", "finished": "完成", "convenience": "方便", "trucks": "卡車", "lease": "租約", "renew": "續簽", "maintenance": "維護", "costs": "成本", "offering": "提供", "small": "小型", "businesses": "企業", "director": "主任", "rule": "規則", "journalist": "記者", "restaurant": "餐廳", "won": "贏得", "fine": "精緻", "dining": "餐飲", "award": "獎項", "museum": "博物館", "seven": "七", "focused": "專注於", "improving": "提高", "negotiation": "談判", "skills": "能力", "merchandise": "商品", "currently": "目前", "limited": "有限的", "maintain": "維持", "offering": "提供",
-            
-            // --- Day 5 新增詞彙 ---
-            "potted": "盆栽的", "placed": "放置", "windows": "窗戶", "brighten": "點亮", "shed": "棚屋", "storing": "存放", "winter": "冬天", "vending": "販售", "selling": "出售", "snacks": "零食", "drinks": "飲料", "pressure": "壓力", "safety": "安全", "designated": "指定的", "unloading": "卸下", "groceries": "雜貨", "council": "議會", "approved": "批准", "replace": "替換", "yield": "讓路", "crossing": "穿越", "crosswalk": "人行橫道", "allow": "允許", "boss": "上司", "welcome": "歡迎", "attendees": "參加者", "offer": "提供", "sales": "促銷", "clear": "清理", "show": "展會", "pitching": "推銷", "hybrid": "混合動力", "models": "車型", "repair": "維修", "parts": "零件", "contributions": "貢獻", "textbook": "教科書", "focuses": "著重於", "lives": "生活", "sends": "發送", "alert": "提醒", "customers": "客戶", "transactions": "交易", "serve": "提供", "fast": "快速的", "food": "食物", "transit": "交通", "connect": "連接", "suburban": "郊區的", "residents": "居民", "efficiently": "有效地", "heatwave": "熱浪", "issued": "發布", "warning": "警告", "dangerously": "危險地", "committed": "致力於", "line": "產品線", "compared": "相比", "produce": "生產", "consulting": "諮詢", "firm": "公司", "identify": "確定", "develop": "制定", "strategy": "策略", "trainer": "教練", "create": "創建", "plan": "計劃", "follow": "遵守", "strict": "嚴格的", "incident": "事件", "tightened": "收緊", "administrators": "行政人員", "considering": "考慮", "options": "選項", "improve": "提高", "supply": "供應", "recycle": "回收", "old": "舊的", "discount": "折扣", "dutch": "荷蘭人", "famous": "著名的", "cheeses": "起司", "sufficient": "足夠的", "delayed": "推遲", "rely": "依賴", "alumni": "校友", "fund": "資助", "scholarship": "獎學金", "program": "計畫", "completion": "完成", "property": "物業", "manager": "經理", "cut": "削減", "unnecessary": "不必要的", "spending": "開支", "solar": "太陽能", "panels": "電池板", "installing": "安裝", "overseas": "海外", "reduce": "減少", "high": "高", "costs": "成本", "opens": "開闢", "development": "發展", "cushioning": "緩衝物", "shipment": "運送", "appliances": "器具", "disposal": "處理", "handbags": "手提包", "policy": "保險單", "covers": "涵蓋", "damage": "損壞", "smartphones": "智慧型手機", "tablets": "平板電腦", "analyzed": "分析", "competitive": "競爭", "advantage": "優勢", "formal": "正式的", "dinner": "晚餐", "setting": "設置", "requires": "要求", "guest": "客人", "complimentary": "免費的", "free": "免費", "ticket": "票", "internship": "實習", "holding": "舉行", "auditions": "試鏡", "musical": "音樂劇", "chains": "連鎖", "fiercely": "激烈地", "crowded": "擁擠的",
-            
-            // --- Day 6 新增詞彙 ---
-            "fee": "費用", "per": "每個", "tour": "導覽", "highlighted": "強調", "latest": "最新的", "medical": "醫療的", "technology": "技術", "accepts": "接受", "baggage": "行李", "including": "包括", "accident": "事故", "raised": "引起", "standards": "標準", "construction": "施工", "site": "現場", "customer": "客戶", "experience": "體驗", "provided": "提供", "stadium": "體育場", "blog": "部落格", "offers": "提供", "beginners": "初學者", "description": "描述", "lists": "列出", "reporting": "報告", "council": "議會", "cover": "支付", "rising": "不斷上漲的", "maintenance": "維護", "responsible": "負責", "buying": "購買", "factory": "工廠", "remain": "保持", "seated": "坐著", "complete": "完全的", "feedback": "回饋", "session": "會議", "organized": "組織", "share": "分享", "experience": "經驗", "introduced": "介紹", "briefing": "早會", "hr": "人力資源", "department": "部門", "still": "仍然", "accepting": "接受", "until": "直到", "pamphlet": "小冊子", "explains": "解釋", "limits": "限制", "security": "保安人員", "manage": "管理", "sale": "促銷", "capacity": "產能", "demand": "需求", "series": "一系列", "questioned": "提問", "experienced": "經驗豐富的", "interviewers": "面試官", "résumé": "履歷", "references": "推薦人", "whom": "誰", "employer": "雇主", "hand": "發放", "passing": "路過", "entrance": "入口", "payable": "應支付的", "targets": "目標", "monitoring": "監控", "pricing": "定價", "strategy": "策略", "guide": "導覽", "wing": "側廳", "emphasis": "強調", "accessibility": "可存取性", "complimentary": "免費的", "high-speed": "高速的", "technical": "技術的", "issues": "問題", "support": "支援", "team": "團隊", "political": "政治的", "events": "事件", "caused": "導致", "volatility": "波動", "check": "檢查", "real-time": "即時的", "orders": "訂單", "online": "線上", "update": "更新", "interruption": "中斷", "website": "網站", "delays": "延誤", "cancellations": "取消", "performs": "進行", "servers": "伺服器", "installation": "安裝", "included": "包含", "manual": "手冊", "left": "留下", "thousand": "數千", "headphones": "耳機", "block": "阻擋", "extensive": "廣泛的", "boosting": "提升", "visibility": "知名度", "explores": "探討", "complexities": "複雜性", "digital": "數位", "age": "時代", "economists": "經濟學家", "spending": "消費", "support": "支持", "further": "進一步", "hired": "聘請", "specialist": "專家", "setup": "設置", "summary": "摘要", "sent": "發送", "customer": "客戶", "purchase": "購買", "supermarket": "超市", "entitled": "有權享有", "paid": "帶薪的", "annually": "每年", "requested": "要求", "transfer": "調職", "stress": "壓力", "levels": "水準", "investing": "投資", "considered": "被認為是", "long-term": "長期", "wealth": "財富", "strategy": "策略", "closure": "封閉", "necessary": "必要的", "area": "地區"
-        };
+    // --- Day 1-3 詞彙 --- (保持不變)
+    "company": "公司", "actively": "積極地", "looking": "尋找", "qualified": "合格的", "fill": "填補", "positions": "職位", "prioritize": "優先處理", "needs": "需求", "represents": "代表", "revenue": "營收", "exchange": "交換", "networking": "社交/建立人脈", "contact": "聯繫", "use": "使用", "send": "發送", "signed": "已簽署的", "contract": "合約", "employees": "員工", "take": "拿取/利用", "broadcast": "廣播/直播", "announcement": "公告", "ensure": "確保", "submit": "提交", "necessary": "必要的", "identification": "身份證明", "documents": "文件", "conference": "會議", "renowned": "著名的", "economist": "經濟學家", "committee": "委員會", "invited": "邀請", "turnout": "投票率", "unexpectedly": "出乎意料地", "scheduled": "預定的", "rain": "雨", "exceed": "超過", "quarterly": "季度的", "targets": "目標", "receive": "收到/獲得", "substantial": "豐厚的", "benefits": "福利", "quit": "辭職", "position": "職位/職務", "local": "地方的", "event": "活動", "annual": "年度的", "sales": "銷售", "details": "細節", "check": "查看", "bulletin": "公告/布告", "board": "板子", "voter": "選民", "forecast": "預報", "outdoor": "戶外的", "concert": "音樂會", "held": "舉行", "as": "如同", "available": "可用的", "survey": "問卷", "decided": "決定", "career": "職涯", "path": "道路", "layoff": "裁員", "ad": "廣告", "agency": "代理商", "designs": "設計", "various": "各種的", "industries": "產業", "health": "健康", "well-being": "幸福感", "work": "工作", "tourists": "遊客", "currency": "貨幣", "yen": "日圓", "file": "檔案", "attachment": "附件", "email": "電子郵件", "midnight": "午夜", "artist": "藝術家", "contemporary": "當代的", "scene": "場景", "holds": "舉行", "review": "審查", "meeting": "會議", "december": "十二月", "mayor": "市長", "next": "下一個", "month": "月份", "should": "應該", "cost": "費用", "budget": "預算", "full": "完整的", "is": "是",
+            "waste": "廢棄物", "placed": "放置", "staring": "盯著看", "strain": "疲勞", "supermarket": "超市", "careful": "小心", "walk": "行走", "cleaning": "清潔", "carried": "撐著", "turbulence": "亂流", "pilot": "飛行員", "managed": "設法", "maintain": "維持", "postponed": "推遲", "unexpected": "預料之外的", "present": "出示", "enter": "進入", "gallery": "畫廊", "refer": "參考", "assigned": "分配的", "provided": "提供", "project": "項目", "goals": "目標", "pens": "筆", "notebooks": "筆記本", "goal": "目標", "become": "成為", "renewable": "再生能源", "technology": "技術", "crucial": "重要的", "building": "建立", "relationships": "關係", "coffee": "咖啡", "discuss": "討論", "proposal": "提案", "check": "檢查", "store": "商店", "purchase": "購買", "utilities": "水電費", "maintenance": "維護", "fees": "費用", "delicious": "美味的", "provided": "提供", "citizens": "公民", "voice": "表達", "confirms": "確認", "concerns": "擔憂", "tax": "稅", "held": "舉行", "author": "作者", "session": "時段", "display": "展示", "dashboard": "儀表板", "temporary": "臨時的", "lot": "停車場", "recommend": "推薦", "historical": "歷史的", "background": "背景", "castle": "城堡", "quit": "辭職", "position": "職位", "benefits": "福利", "attracts": "吸引", "thousands": "數千", "attendees": "參與者", "storm": "暴風雨", "experienced": "經歷", "widespread": "廣泛的", "library": "圖書館", "concern": "擔憂", "items": "商品", "liquidation": "清算", "pay": "支付", "receipt": "收據", "subscribers": "訂閱者", "whenever": "每當", "posted": "張貼", "delivered": "發表", "fascinating": "迷人的", "quantum": "量子", "physics": "物理學",
+            "waste": "廢棄物", "staring": "盯著看", "shelf": "架子", "cooling": "冷卻", "cleaning": "清潔", "inside": "內部", "carried": "撐著", "even": "甚至", "indoor": "室內的", "guests": "客人", "involved": "捲入", "patent": "專利", "rights": "權利", "force": "強行", "plug": "插頭", "fit": "合適", "temple": "寺廟", "main": "主要的", "attach": "附上", "receipts": "收據", "monthly": "每月的", "strain": "疲勞", "vision": "願景", "innovation": "創新", "quiet": "安靜的", "room": "房間", "focused": "專注的", "studying": "學習", "paintings": "畫作", "displayed": "展示", "quarter": "季度", "warranty": "保固", "claims": "索賠", "harsh": "嚴厲的", "review": "評論", "silverware": "銀器", "capacity": "容量", "optimize": "優化", "efficiency": "效率", "delays": "延誤", "hires": "僱員", "languages": "語言", "international": "國際的", "launched": "發起", "massive": "大規模的", "targeting": "針對", "consumers": "消費者", "potential": "潛在的", "investor": "投資者", "key": "關鍵的", "data": "數據", "points": "點", "decision": "決定", "approved": "批准", "proceeding": "繼續進行", "published": "出版", "findings": "發現", "prestigious": "著名的", "detailing": "詳細介紹", "hired": "僱用", "redesign": "重新設計", "garden": "花園", "prefer": "喜歡", "reserve": "預訂", "get": "起身", "easily": "容易地", "up": "向上", "storm": "暴風雨", "experienced": "經歷", "widespread": "廣泛的", "library": "圖書館", "concern": "擔憂", "items": "商品", "liquidation": "清算", "pay": "支付", "receipt": "收據", "subscribers": "訂閱者", "whenever": "每當", "posted": "張貼", "delivered": "發表", "fascinating": "迷人的", "quantum": "量子", "physics": "物理學",
+            "compete": "競爭", "requires": "需要", "intense": "密集的", "training": "訓練", "demand": "需求", "science": "科學", "waiting": "等候", "suspect": "嫌疑人", "market": "市場", "climbing": "攀登", "everest": "聖母峰", "described": "形容", "checkout": "結帳", "receiving": "收到", "merger": "合併", "alumni": "校友", "graduated": "畢業", "decade": "十年", "postponed": "推遲", "turbulence": "亂流", "pilot": "飛行員", "maintained": "維持", "dashboard": "儀表板", "temporary": "臨時的", "lot": "停車場", "historical": "歷史的", "background": "背景", "castle": "城堡", "mayor": "市長", "next": "下個月", "rewards": "獎勵", "available": "可用的", "survey": "問卷", "decided": "決定", "career": "職涯", "path": "道路", "layoff": "裁員", "ad": "廣告", "agency": "代理商", "designs": "設計", "various": "各種的", "industries": "產業",
+            "celebration": "慶祝", "ballroom": "宴會廳", "compromise": "妥協", "quality": "品質", "stunning": "驚豔的", "launch": "發布", "consulted": "諮詢", "apartment": "公寓", "handled": "處理", "complex": "複雜的", "elected": "選出", "represent": "代表", "community": "社區", "monitor": "監控", "delivery": "送貨", "status": "狀態", "fierce": "猛烈的", "salaries": "薪水", "field": "領域", "hosting": "舉辦", "landscape": "風景", "artists": "藝術家", "check-in": "辦理入住", "credited": "存入", "account": "帳戶", "beginning": "開始", "meditation": "冥想", "concise": "簡潔的", "limited": "限制", "notify": "通知", "reception": "接待處", "desk": "櫃檯", "changes": "變更", "expected": "預計的", "booking": "預訂", "confirmation": "確認單", "flight": "航班", "number": "號碼", "obtaining": "獲得", "permits": "許可證", "proved": "證明", "complicated": "複雜的", "conversion": "轉換", "model": "模型", "rejected": "否決", "lit": "有光線的", "interview": "面試", "transportation": "交通", "announced": "宣布", "regulations": "規定", "trails": "步道", "hazardous": "危險的", "policy": "政策", "updates": "最新資訊", "distributed": "發布",
+            
+            // --- Day 4 新增詞彙 ---
+            "gate": "登機門", "boarding": "登機", "time": "時間", "plumber": "水管工", "leak": "洩漏處", "under": "在...下", "fixed": "修好", "close": "關閉", "energy": "能源", "save": "節省", "streamline": "簡化", "vacant": "空缺的", "faster": "更快", "tickets": "票", "available": "可用的", "purchase": "購買", "request": "請求", "form": "表格", "hotel": "飯店", "room": "房間", "global": "全球的", "economic": "經濟的", "slowdown": "放緩", "region": "地區", "remains": "保持", "positive": "樂觀的", "contact": "聯繫", "unusual": "異常的", "transactions": "交易", "withdraw": "提取", "atm": "提款機", "per": "每個", "elegant": "優雅的", "significantly": "顯著地", "boosted": "提升了", "market": "市場", "appeal": "吸引力", "gps": "全球定位系統", "pinpoints": "精確定位", "lost": "遺失的", "device": "裝置", "result": "結果", "years": "多年", "commitment": "奉獻", "attracts": "吸引", "runners": "跑者", "scheduled": "預定的", "delay": "延遲", "safety": "安全", "ergonomics": "人體工學", "key": "關鍵的", "consideration": "考量", "long-term": "長期的", "project": "專案", "manager": "經理", "reviewed": "審查", "identify": "識別", "potential": "潛在的", "voted": "投票", "selection": "選曲", "charity": "慈善", "mutually": "共同地", "agreed": "同意的", "parties": "各方", "involved": "涉及的", "legal": "法律的", "team": "團隊", "anxiously": "焦急地", "awaited": "等待", "affect": "影響", "future": "未來", "hold": "舉行", "preparing": "準備", "meal": "餐點", "options": "選項", "prefer": "偏好", "acceptable": "可接受的", "exploded": "暴漲", "featured": "以...為特色", "guest": "來賓", "speaker": "講者", "librarian": "圖書管理員", "record": "記錄", "novel": "小說", "purchased": "購買", "advanced": "先進的", "research": "研究", "proceed": "繼續進行", "ferry": "渡輪", "pier": "碼頭", "feature": "刊登", "exclusive": "獨家的", "interview": "專訪", "entire": "全部的", "purchase": "購買", "branch": "分店", "worldwide": "全球", "technological": "技術的", "impacted": "影響", "decade": "十年", "peak": "高峰", "due": "由於", "holiday": "假日", "shopping": "購物", "finished": "完成", "convenience": "方便", "trucks": "卡車", "lease": "租約", "renew": "續簽", "maintenance": "維護", "costs": "成本", "offering": "提供", "small": "小型", "businesses": "企業", "director": "主任", "rule": "規則", "journalist": "記者", "restaurant": "餐廳", "won": "贏得", "fine": "精緻", "dining": "餐飲", "award": "獎項", "museum": "博物館", "seven": "七", "focused": "專注於", "improving": "提高", "negotiation": "談判", "skills": "能力", "merchandise": "商品", "currently": "目前", "limited": "有限的", "maintain": "維持", "offering": "提供",
+            
+            // --- Day 5 新增詞彙 ---
+            "potted": "盆栽的", "placed": "放置", "windows": "窗戶", "brighten": "點亮", "shed": "棚屋", "storing": "存放", "winter": "冬天", "vending": "販售", "selling": "出售", "snacks": "零食", "drinks": "飲料", "pressure": "壓力", "safety": "安全", "designated": "指定的", "unloading": "卸下", "groceries": "雜貨", "council": "議會", "approved": "批准", "replace": "替換", "yield": "讓路", "crossing": "穿越", "crosswalk": "人行橫道", "allow": "允許", "boss": "上司", "welcome": "歡迎", "attendees": "參加者", "offer": "提供", "sales": "促銷", "clear": "清理", "show": "展會", "pitching": "推銷", "hybrid": "混合動力", "models": "車型", "repair": "維修", "parts": "零件", "contributions": "貢獻", "textbook": "教科書", "focuses": "著重於", "lives": "生活", "sends": "發送", "alert": "提醒", "customers": "客戶", "transactions": "交易", "serve": "提供", "fast": "快速的", "food": "食物", "transit": "交通", "connect": "連接", "suburban": "郊區的", "residents": "居民", "efficiently": "有效地", "heatwave": "熱浪", "issued": "發布", "warning": "警告", "dangerously": "危險地", "committed": "致力於", "line": "產品線", "compared": "相比", "produce": "生產", "consulting": "諮詢", "firm": "公司", "identify": "確定", "develop": "制定", "strategy": "策略", "trainer": "教練", "create": "創建", "plan": "計劃", "follow": "遵守", "strict": "嚴格的", "incident": "事件", "tightened": "收緊", "administrators": "行政人員", "considering": "考慮", "options": "選項", "improve": "提高", "supply": "供應", "recycle": "回收", "old": "舊的", "discount": "折扣", "dutch": "荷蘭人", "famous": "著名的", "cheeses": "起司", "sufficient": "足夠的", "delayed": "推遲", "rely": "依賴", "alumni": "校友", "fund": "資助", "scholarship": "獎學金", "program": "計畫", "completion": "完成", "property": "物業", "manager": "經理", "cut": "削減", "unnecessary": "不必要的", "spending": "開支", "solar": "太陽能", "panels": "電池板", "installing": "安裝", "overseas": "海外", "reduce": "減少", "high": "高", "costs": "成本", "opens": "開闢", "development": "發展", "cushioning": "緩衝物", "shipment": "運送", "appliances": "器具", "disposal": "處理", "handbags": "手提包", "policy": "保險單", "covers": "涵蓋", "damage": "損壞", "smartphones": "智慧型手機", "tablets": "平板電腦", "analyzed": "分析", "competitive": "競爭", "advantage": "優勢", "formal": "正式的", "dinner": "晚餐", "setting": "設置", "requires": "要求", "guest": "客人", "complimentary": "免費的", "free": "免費", "ticket": "票", "internship": "實習", "holding": "舉行", "auditions": "試鏡", "musical": "音樂劇", "chains": "連鎖", "fiercely": "激烈地", "crowded": "擁擠的",
+            
+            // --- Day 6 新增詞彙 ---
+            "fee": "費用", "per": "每個", "tour": "導覽", "highlighted": "強調", "latest": "最新的", "medical": "醫療的", "technology": "技術", "accepts": "接受", "baggage": "行李", "including": "包括", "accident": "事故", "raised": "引起", "standards": "標準", "construction": "施工", "site": "現場", "customer": "客戶", "experience": "體驗", "provided": "提供", "stadium": "體育場", "blog": "部落格", "offers": "提供", "beginners": "初學者", "description": "描述", "lists": "列出", "reporting": "報告", "council": "議會", "cover": "支付", "rising": "不斷上漲的", "maintenance": "維護", "responsible": "負責", "buying": "購買", "factory": "工廠", "remain": "保持", "seated": "坐著", "complete": "完全的", "feedback": "回饋", "session": "會議", "organized": "組織", "share": "分享", "experience": "經驗", "introduced": "介紹", "briefing": "早會", "hr": "人力資源", "department": "部門", "still": "仍然", "accepting": "接受", "until": "直到", "pamphlet": "小冊子", "explains": "解釋", "limits": "限制", "security": "保安人員", "manage": "管理", "sale": "促銷", "capacity": "產能", "demand": "需求", "series": "一系列", "questioned": "提問", "experienced": "經驗豐富的", "interviewers": "面試官", "résumé": "履歷", "references": "推薦人", "whom": "誰", "employer": "雇主", "hand": "發放", "passing": "路過", "entrance": "入口", "payable": "應支付的", "targets": "目標", "monitoring": "監控", "pricing": "定價", "strategy": "策略", "guide": "導覽", "wing": "側廳", "emphasis": "強調", "accessibility": "可存取性", "complimentary": "免費的", "high-speed": "高速的", "technical": "技術的", "issues": "問題", "support": "支援", "team": "團隊", "political": "政治的", "events": "事件", "caused": "導致", "volatility": "波動", "check": "檢查", "real-time": "即時的", "orders": "訂單", "online": "線上", "update": "更新", "interruption": "中斷", "website": "網站", "delays": "延誤", "cancellations": "取消", "performs": "進行", "servers": "伺服器", "installation": "安裝", "included": "包含", "manual": "手冊", "left": "留下", "thousand": "數千", "headphones": "耳機", "block": "阻擋", "extensive": "廣泛的", "boosting": "提升", "visibility": "知名度", "explores": "探討", "complexities": "複雜性", "digital": "數位", "age": "時代", "economists": "經濟學家", "spending": "消費", "support": "支持", "further": "進一步", "hired": "聘請", "specialist": "專家", "setup": "設置", "summary": "摘要", "sent": "發送", "customer": "客戶", "purchase": "購買", "supermarket": "超市", "entitled": "有權享有", "paid": "帶薪的", "annually": "每年", "requested": "要求", "transfer": "調職", "stress": "壓力", "levels": "水準", "investing": "投資", "considered": "被認為是", "long-term": "長期", "wealth": "財富", "strategy": "策略", "closure": "封閉", "necessary": "必要的", "area": "地區"
+        };
+        
+        /**
+         * 處理英文情境例句，將字典中的單詞用 span 包裝起來以啟用懸停翻譯
+         * @param {string} englishContext - 英文例句
+         * @returns {string} 帶有懸停元素的 HTML 字串
+         */
+        function renderContextWithTooltips(englishContext) {
+            if (!englishContext) return '';
+
+            // 使用正規表達式將句子分割成單詞和分隔符號（包括空格和標點符號）
+            const parts = englishContext.split(/([\s,.;?!()]+)/); 
+            let output = '';
+
+            parts.forEach(part => {
+                if (part.trim() === '') {
+                    output += part; // 保留空格和標點符號
+                    return;
+                }
+
+                // 移除前後標點符號，以便在字典中查找
+                let cleanedWord = part.replace(/[,.:;?!()]$/g, '').toLowerCase();
+                
+                // 檢查是否為字典中的單詞
+                let translation = wordDictionary[cleanedWord];
+                
+                // 處理部分不規則變化 (僅處理簡單的 s 和 ed)
+                if (!translation) {
+                    if (cleanedWord.endsWith('s') && wordDictionary[cleanedWord.slice(0, -1)]) {
+                        translation = wordDictionary[cleanedWord.slice(0, -1)];
+                    } else if (cleanedWord.endsWith('ed') && wordDictionary[cleanedWord.slice(0, -2)]) {
+                        translation = wordDictionary[cleanedWord.slice(0, -2)];
+                    }
+                }
+
+                if (translation) {
+                    // 如果有翻譯，則用 span 包裝，並帶上 data-translation 屬性
+                    output += `<span class="context-word" data-translation="${translation}">${part}</span>`;
+                } else {
+                    output += part; // 沒有翻譯，保持原樣
+                }
+            });
+
+            return output;
+        }
+
+        /**
+         * 快速查找核心短語的中文翻譯
+         * @param {string} englishPhrase - 英文短語 (e.g., "a job seeker")
+         * @returns {string} - 中文翻譯 (e.g., "求職者")
+         */
+        function getCoreChineseTranslation(englishPhrase) {
+            const vocab = vocabData.find(v => v.english === englishPhrase);
+            return vocab ? vocab.chinese : '';
+        }
+
+        // --- 模式切換邏輯 ---
+        const cardMode = document.getElementById('card-mode');
+        const quizMode = document.getElementById('quiz-mode');
+        const cardModeBtn = document.getElementById('card-mode-btn');
+        const quizModeBtn = document.getElementById('quiz-mode-btn');
+
+        let currentMode = 'card';
+
+        function switchMode(mode) {
+            currentMode = mode;
+            if (mode === 'card') {
+                cardMode.classList.remove('hidden');
+                quizMode.classList.add('hidden');
+                cardModeBtn.classList.add('active-tab');
+                cardModeBtn.classList.remove('text-gray-600', 'bg-gray-100');
+                quizModeBtn.classList.remove('active-tab');
+                quizModeBtn.classList.add('text-gray-600', 'bg-gray-100');
+            } else {
+                cardMode.classList.add('hidden');
+                quizMode.classList.remove('hidden');
+                quizModeBtn.classList.add('active-tab');
+                quizModeBtn.classList.remove('text-gray-600', 'bg-gray-100');
+                cardModeBtn.classList.remove('active-tab');
+                cardModeBtn.classList.add('text-gray-600', 'bg-gray-100');
+                resetQuizSettings(); // 切換到測驗時，先進入設定頁
+            }
+        }
+
+        cardModeBtn.addEventListener('click', () => switchMode('card'));
+        quizModeBtn.addEventListener('click', () => switchMode('quiz'));
+
+
+        // --- 卡片學習模式邏輯 (Card Study) ---
+        let cardIndex = 0;
+        const cardEnglish = document.getElementById('card-english');
+        const cardChineseCore = document.getElementById('card-chinese-core'); 
+        
+        const cardEnglishContext = document.getElementById('card-english-context');
+        const cardChineseContext = document.getElementById('card-chinese-context');
+        const cardTip = document.getElementById('card-tip');
+        
+        const cardSupplementDetail = document.getElementById('card-supplement-detail'); 
+        const cardSupplement = document.getElementById('card-supplement');
+        
+        const cardPrevBtn = document.getElementById('card-prev-btn');
+        const cardNextBtn = document.getElementById('card-next-btn');
+        const cardJumpBtn = document.getElementById('card-jump-btn');
+        const cardProgress = document.getElementById('card-progress');
+        
+        // Modal 相關元素
+        const jumpModal = document.getElementById('jump-modal');
+        const jumpInput = document.getElementById('jump-input');
+        const jumpConfirm = document.getElementById('jump-confirm');
+        const jumpCancel = document.getElementById('jump-cancel');
+        const jumpModalMessage = document.getElementById('jump-modal-message');
+
+        function renderCard() {
+            const data = vocabData[cardIndex];
+            
+            // 1. 短語與核心翻譯
+            cardEnglish.textContent = data.english;
+            cardChineseCore.textContent = data.chinese;
+            
+            // 2. 載入情境內容 (使用懸停翻譯處理)
+            // 對主要例句應用懸停翻譯
+            cardEnglishContext.innerHTML = renderContextWithTooltips(data.englishContext); 
+            cardChineseContext.textContent = data.chineseContext;
+            cardTip.textContent = data.tip;
+
+            // 3. 補充用法
+            let supplementContent = '';
+            if (data.supplement) {
+                supplementContent += `${data.supplement}`;
+                if (data.supplementExample) {
+                    // 對補充例句應用懸停翻譯
+                    const processedExample = renderContextWithTooltips(data.supplementExample); 
+                    supplementContent += `<br><span class="ml-4 block italic text-sm text-blue-600 mt-1">例句: ${processedExample}</span>`;
+                }
+                if (data.supplementExampleChinese) {
+                    supplementContent += `<span class="ml-4 block text-xs text-gray-500">翻譯: ${data.supplementExampleChinese}</span>`;
+                }
+                cardSupplementDetail.classList.remove('hidden');
+            } else {
+                cardSupplementDetail.classList.add('hidden');
+            }
+            cardSupplement.innerHTML = supplementContent;
+
+            cardProgress.textContent = `詞彙卡 ${cardIndex + 1} / ${vocabData.length}`;
+            
+            // 更新跳轉 modal 的最大值
+            jumpInput.max = vocabData.length;
+            jumpModalMessage.textContent = `請輸入編號 (1 到 ${vocabData.length}):`;
+            
+            // 按鈕狀態
+            cardPrevBtn.disabled = cardIndex === 0;
+            cardNextBtn.disabled = cardIndex === vocabData.length - 1;
+        }
+
+        function goToCard(index) {
+            // 檢查輸入是否為有效數字
+            if (isNaN(index) || index === null) {
+                return;
+            }
+
+            // 將編號轉換為索引 (編號 1 对应索引 0)
+            const newIndex = parseInt(index) - 1; 
+            const max = vocabData.length;
+            
+            // 檢查範圍
+            if (newIndex >= 0 && newIndex < max) {
+                cardIndex = newIndex;
+                renderCard();
+                return true; // 跳轉成功
+            } else {
+                // 顯示錯誤訊息 (使用 modal 內的 message)
+                jumpModalMessage.textContent = `輸入錯誤！請輸入 1 到 ${max} 之間的有效數字。`;
+                jumpModalMessage.classList.add('text-red-600', 'font-bold');
+                jumpInput.value = '';
+                return false; // 跳轉失敗
+            }
+        }
+        
+        function showJumpModal() {
+            jumpModal.classList.remove('hidden');
+            jumpModalMessage.textContent = `請輸入編號 (1 到 ${vocabData.length}):`;
+            jumpModalMessage.classList.remove('text-red-600', 'font-bold');
+            jumpInput.value = cardIndex + 1; // 預設為當前編號
+            jumpInput.focus();
+        }
+
+        function hideJumpModal() {
+            jumpModal.classList.add('hidden');
+        }
         
-        /**
-         * 處理英文情境例句，將字典中的單詞用 span 包裝起來以啟用懸停翻譯
-         * @param {string} englishContext - 英文例句
-         * @returns {string} 帶有懸停元素的 HTML 字串
-         */
-        function renderContextWithTooltips(englishContext) {
-            if (!englishContext) return '';
-
-            // 使用正規表達式將句子分割成單詞和分隔符號（包括空格和標點符號）
-            const parts = englishContext.split(/([\s,.;?!()]+)/); 
-            let output = '';
-
-            parts.forEach(part => {
-                if (part.trim() === '') {
-                    output += part; // 保留空格和標點符號
-                    return;
-                }
-
-                // 移除前後標點符號，以便在字典中查找
-                let cleanedWord = part.replace(/[,.:;?!()]$/g, '').toLowerCase();
-                
-                // 檢查是否為字典中的單詞
-                let translation = wordDictionary[cleanedWord];
-                
-                // 處理部分不規則變化 (僅處理簡單的 s 和 ed)
-                if (!translation) {
-                    if (cleanedWord.endsWith('s') && wordDictionary[cleanedWord.slice(0, -1)]) {
-                        translation = wordDictionary[cleanedWord.slice(0, -1)];
-                    } else if (cleanedWord.endsWith('ed') && wordDictionary[cleanedWord.slice(0, -2)]) {
-                        translation = wordDictionary[cleanedWord.slice(0, -2)];
-                    }
-                }
-
-                if (translation) {
-                    // 如果有翻譯，則用 span 包裝，並帶上 data-translation 屬性
-                    output += `<span class="context-word" data-translation="${translation}">${part}</span>`;
-                } else {
-                    output += part; // 沒有翻譯，保持原樣
-                }
-            });
-
-            return output;
-        }
-
-        /**
-         * 快速查找核心短語的中文翻譯
-         * @param {string} englishPhrase - 英文短語 (e.g., "a job seeker")
-         * @returns {string} - 中文翻譯 (e.g., "求職者")
-         */
-        function getCoreChineseTranslation(englishPhrase) {
-            const vocab = vocabData.find(v => v.english === englishPhrase);
-            return vocab ? vocab.chinese : '';
-        }
-
-        // --- 模式切換邏輯 ---
-        const cardMode = document.getElementById('card-mode');
-        const quizMode = document.getElementById('quiz-mode');
-        const cardModeBtn = document.getElementById('card-mode-btn');
-        const quizModeBtn = document.getElementById('quiz-mode-btn');
-
-        let currentMode = 'card';
-
-        function switchMode(mode) {
-            currentMode = mode;
-            if (mode === 'card') {
-                cardMode.classList.remove('hidden');
-                quizMode.classList.add('hidden');
-                cardModeBtn.classList.add('active-tab');
-                cardModeBtn.classList.remove('text-gray-600', 'bg-gray-100');
-                quizModeBtn.classList.remove('active-tab');
-                quizModeBtn.classList.add('text-gray-600', 'bg-gray-100');
+        // --- 字典查詢邏輯 ---
+        function lookupWord() {
+            const wordInput = document.getElementById('word-input');
+            const word = wordInput.value.trim();
+            if (word) {
+                // 使用 Oxford Learner's Dictionary
+                const oxfordUrl = `https://www.oxfordlearnersdictionaries.com/definition/english/${word}`;
+                // 在新視窗/標籤頁中開啟查詢結果
+                window.open(oxfordUrl, '_blank');
+                wordInput.value = '';
             } else {
-                cardMode.classList.add('hidden');
-                quizMode.classList.remove('hidden');
-                quizModeBtn.classList.add('active-tab');
-                quizModeBtn.classList.remove('text-gray-600', 'bg-gray-100');
-                cardModeBtn.classList.remove('active-tab');
-                cardModeBtn.classList.add('text-gray-600', 'bg-gray-100');
-                resetQuizSettings(); // 切換到測驗時，先進入設定頁
+                alert("請輸入要查詢的單字！");
             }
         }
 
-        cardModeBtn.addEventListener('click', () => switchMode('card'));
-        quizModeBtn.addEventListener('click', () => switchMode('quiz'));
+
+        // --- Tooltip 邏輯 (共用) ---
+        let tooltipElement = null;
+
+        function showTooltip(wordElement) {
+            const translation = wordElement.getAttribute('data-translation');
+            if (!translation) return;
+
+            // 移除舊的 tooltip
+            if (tooltipElement) tooltipElement.remove();
+
+            // 創建新的 tooltip
+            tooltipElement = document.createElement('div');
+            tooltipElement.className = 'word-tooltip';
+            tooltipElement.textContent = translation;
+            
+            document.body.appendChild(tooltipElement);
+
+            // 計算位置
+            const rect = wordElement.getBoundingClientRect();
+            const bodyScrollTop = window.scrollY || document.documentElement.scrollTop;
+            
+            // 將 tooltip 放置在單詞上方並水平居中
+            tooltipElement.style.left = (rect.left + rect.width / 2) + 'px';
+            tooltipElement.style.top = (rect.top + bodyScrollTop - 10) + 'px'; 
+
+            tooltipElement.style.opacity = '1';
+        }
+
+        function hideTooltip() {
+            if (tooltipElement) {
+                tooltipElement.style.opacity = '0';
+                setTimeout(() => {
+                    if (tooltipElement) tooltipElement.remove();
+                    tooltipElement = null;
+                }, 200); // 配合 CSS 轉換時間
+            }
+        }
+
+        // 使用事件委派 (Event Delegation) 監聽整個頁面，但只針對 .context-word
+        document.addEventListener('mouseover', (e) => {
+            const target = e.target.closest('.context-word');
+            if (target) {
+                showTooltip(target);
+            }
+        });
+
+        document.addEventListener('mouseout', (e) => {
+            const target = e.target.closest('.context-word');
+            if (target) {
+                if (!target.contains(e.relatedTarget)) {
+                    hideTooltip();
+                }
+            } else {
+                hideTooltip();
+            }
+        });
+        
+        window.addEventListener('scroll', hideTooltip);
+        window.addEventListener('resize', hideTooltip);
 
 
-        // --- 卡片學習模式邏輯 (Card Study) ---
-        let cardIndex = 0;
-        const cardEnglish = document.getElementById('card-english');
-        const cardChineseCore = document.getElementById('card-chinese-core'); 
+        // --- 情境測驗模式邏輯 (Quiz) ---
+        let quizLength = 20; // 預設 20 題
+        let quizData = [];
+        let quizIndex = 0;
+        let selectedAnswer = null;
+        let isAnswered = false;
+        let correctCount = 0;
+
+        const quizSettings = document.getElementById('quiz-settings');
+        const quizContent = document.getElementById('quiz-content');
+        const quizLengthOptions = document.querySelectorAll('.quiz-length-btn');
+        const startQuizBtn = document.getElementById('start-quiz-btn');
+        
+        const quizProgress = document.getElementById('quiz-progress');
+        const quizScenario = document.getElementById('quiz-scenario');
+        const quizOptionsContainer = document.getElementById('quiz-options-container');
+        const quizFeedback = document.getElementById('quiz-feedback');
+        const quizNextBtn = document.getElementById('quiz-next-btn');
+        const quizTranslationBox = document.getElementById('quiz-translation-box');
+        const quizScenarioEnglishResult = document.getElementById('quiz-scenario-english-result');
+        const quizScenarioChineseResult = document.getElementById('quiz-scenario-chinese-result');
+
+        function generateQuizData(n) {
+            const shuffled = [...vocabData].sort(() => 0.5 - Math.random());
+            const questions = [];
+
+            const actualQuizLength = Math.min(n, vocabData.length);
+            const availableQuestions = shuffled.slice(0, actualQuizLength); 
+
+            for (let i = 0; i < availableQuestions.length; i++) {
+                const correctAnswer = availableQuestions[i];
+                
+                let allVocabs = [...vocabData];
+                allVocabs = allVocabs.filter(v => v.english !== correctAnswer.english);
+
+                const randomIncorrect = allVocabs.sort(() => 0.5 - Math.random()).slice(0, 3);
+                
+                let options = [correctAnswer, ...randomIncorrect];
+                options = options.sort(() => 0.5 - Math.random()); 
+
+                questions.push({
+                    scenario: correctAnswer.englishContext,
+                    correctEnglish: correctAnswer.english,
+                    chineseTranslation: correctAnswer.chineseContext,
+                    options: options.map(opt => ({ english: opt.english, isCorrect: opt.english === correctAnswer.english }))
+                });
+            }
+            return questions;
+        }
+
+        function renderQuiz() {
+            if (quizIndex >= quizData.length) {
+                showQuizResult();
+                return;
+            }
+            const currentQuiz = quizData[quizIndex];
+
+            isAnswered = false;
+            selectedAnswer = null;
+            quizFeedback.classList.add('hidden');
+            quizTranslationBox.classList.remove('show');
+            quizNextBtn.disabled = true;
+            quizOptionsContainer.innerHTML = '';
+            
+            quizProgress.textContent = `測驗題 ${quizIndex + 1} / ${quizData.length}`;
+            quizScenario.innerHTML = currentQuiz.scenario;
+
+            currentQuiz.options.forEach((option) => {
+                const div = document.createElement('div');
+                div.className = 'quiz-option bg-white';
+                div.innerHTML = `<span class="option-english">${option.english}</span><span class="option-chinese"></span>`;
+                div.setAttribute('data-english', option.english);
+                div.addEventListener('click', handleAnswer);
+                quizOptionsContainer.appendChild(div);
+            });
+        }
+        
+        function handleAnswer(event) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const selectedOptionDiv = event.target.closest('.quiz-option');
+            if (!selectedOptionDiv) return;
+
+            selectedAnswer = selectedOptionDiv.getAttribute('data-english');
+            const currentQuiz = quizData[quizIndex];
+            
+            const isCorrect = selectedAnswer === currentQuiz.correctEnglish;
+            if (isCorrect) {
+                correctCount++;
+            }
+            
+            Array.from(quizOptionsContainer.children).forEach(optionDiv => {
+                const english = optionDiv.getAttribute('data-english');
+                const chinese = getCoreChineseTranslation(english);
+                
+                const chineseSpan = optionDiv.querySelector('.option-chinese');
+                if (chineseSpan) {
+                    chineseSpan.textContent = `(${chinese})`;
+                    chineseSpan.style.opacity = '1';
+                }
+
+                optionDiv.classList.remove('bg-white', 'hover:bg-gray-300');
+                optionDiv.style.cursor = 'default';
+
+                if (english === currentQuiz.correctEnglish) {
+                    optionDiv.classList.add('correct');
+                } else if (english === selectedAnswer) {
+                    optionDiv.classList.add('incorrect');
+                } else {
+                    optionDiv.classList.add('bg-gray-100', 'text-gray-600');
+                }
+            });
+
+            quizFeedback.classList.remove('hidden');
+            if (isCorrect) {
+                quizFeedback.className = 'mt-6 p-3 rounded-lg text-left bg-green-50 text-green-700 font-bold';
+                quizFeedback.innerHTML = '✅ 答對了！情境運用正確。';
+            } else {
+                quizFeedback.className = 'mt-6 p-3 rounded-lg text-left bg-red-50 text-red-700 font-bold';
+                quizFeedback.innerHTML = `❌ 答錯了... **正確答案是：${currentQuiz.correctEnglish}**`;
+            }
+
+            quizScenarioEnglishResult.innerHTML = renderContextWithTooltips(currentQuiz.scenario);
+            quizScenarioChineseResult.textContent = currentQuiz.chineseTranslation;
+            quizTranslationBox.classList.add('show');
+            
+            quizScenario.innerHTML = quizScenarioEnglishResult.innerHTML; 
+
+            quizNextBtn.disabled = false;
+        }
+
+        function showQuizResult() {
+            const score = correctCount;
+
+            quizProgress.textContent = '測驗完成！';
+            quizScenario.textContent = `您總共答對了 ${correctCount} 題！`;
+            quizTranslationBox.classList.remove('show');
+            quizOptionsContainer.innerHTML = `
+                <div class="text-center mt-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
+                    <p class="text-3xl font-extrabold text-blue-600 mb-4">測驗結果</p>
+                    <p class="text-xl text-gray-700">您完成了所有 ${quizData.length} 題情境測驗。</p>
+                    <p class="text-2xl font-bold text-indigo-700 mt-3">總分：${score} / ${quizData.length}</p>
+                    <button onclick="resetQuizSettings()" class="vibe-button bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg mt-6">
+                        重新選擇題數 🔁
+                    </button>
+                </div>
+            `;
+            quizFeedback.classList.add('hidden');
+            quizNextBtn.classList.add('hidden');
+            correctCount = 0;
+        }
+
+        quizNextBtn.addEventListener('click', () => {
+            if (quizData[quizIndex] && selectedAnswer) {
+                quizData[quizIndex].userAnswer = selectedAnswer;
+            }
+            quizIndex++;
+            renderQuiz();
+        });
+
+        function startQuiz() {
+            if (vocabData.length < 4) {
+                quizOptionsContainer.innerHTML = '<p class="text-red-500 font-bold">⚠️ 詞彙量不足 (需至少 4 個)，無法生成有效測驗。請先增加詞彙卡數量。</p>';
+                quizProgress.textContent = '錯誤';
+                quizNextBtn.classList.add('hidden');
+                return;
+            }
+            
+            // 隱藏設定，顯示測驗內容
+            quizSettings.classList.add('hidden');
+            quizContent.classList.remove('hidden');
+
+            quizData = generateQuizData(quizLength);
+            quizIndex = 0;
+            correctCount = 0;
+            quizNextBtn.classList.remove('hidden');
+            renderQuiz();
+        }
+        
+        function resetQuizSettings() {
+            // 顯示設定，隱藏測驗內容
+            quizSettings.classList.remove('hidden');
+            quizContent.classList.add('hidden');
+            // 重置進度顯示
+            quizProgress.textContent = `測驗題 1 / ${quizLength}`;
+        }
         
-        const cardEnglishContext = document.getElementById('card-english-context');
-        const cardChineseContext = document.getElementById('card-chinese-context');
-        const cardTip = document.getElementById('card-tip');
-        
-        const cardSupplementDetail = document.getElementById('card-supplement-detail'); 
-        const cardSupplement = document.getElementById('card-supplement');
-        
-        const cardPrevBtn = document.getElementById('card-prev-btn');
-        const cardNextBtn = document.getElementById('card-next-btn');
-        const cardJumpBtn = document.getElementById('card-jump-btn');
-        const cardProgress = document.getElementById('card-progress');
-        
-        // Modal 相關元素
-        const jumpModal = document.getElementById('jump-modal');
-        const jumpInput = document.getElementById('jump-input');
-        const jumpConfirm = document.getElementById('jump-confirm');
-        const jumpCancel = document.getElementById('jump-cancel');
-        const jumpModalMessage = document.getElementById('jump-modal-message');
-
-        function renderCard() {
-            const data = vocabData[cardIndex];
-            
-            // 1. 短語與核心翻譯
-            cardEnglish.textContent = data.english;
-            cardChineseCore.textContent = data.chinese;
-            
-            // 2. 載入情境內容 (使用懸停翻譯處理)
-            // 對主要例句應用懸停翻譯
-            cardEnglishContext.innerHTML = renderContextWithTooltips(data.englishContext); 
-            cardChineseContext.textContent = data.chineseContext;
-            cardTip.textContent = data.tip;
-
-            // 3. 補充用法
-            let supplementContent = '';
-            if (data.supplement) {
-                supplementContent += `${data.supplement}`;
-                if (data.supplementExample) {
-                    // 對補充例句應用懸停翻譯
-                    const processedExample = renderContextWithTooltips(data.supplementExample); 
-                    supplementContent += `<br><span class="ml-4 block italic text-sm text-blue-600 mt-1">例句: ${processedExample}</span>`;
-                }
-                if (data.supplementExampleChinese) {
-                    supplementContent += `<span class="ml-4 block text-xs text-gray-500">翻譯: ${data.supplementExampleChinese}</span>`;
-                }
-                cardSupplementDetail.classList.remove('hidden');
-            } else {
-                cardSupplementDetail.classList.add('hidden');
-            }
-            cardSupplement.innerHTML = supplementContent;
-
-            cardProgress.textContent = `詞彙卡 ${cardIndex + 1} / ${vocabData.length}`;
-            
-            // 更新跳轉 modal 的最大值
-            jumpInput.max = vocabData.length;
-            jumpModalMessage.textContent = `請輸入編號 (1 到 ${vocabData.length}):`;
-            
-            // 按鈕狀態
-            cardPrevBtn.disabled = cardIndex === 0;
-            cardNextBtn.disabled = cardIndex === vocabData.length - 1;
-        }
-
-        function goToCard(index) {
-            // 檢查輸入是否為有效數字
-            if (isNaN(index) || index === null) {
-                // 不顯示錯誤，直接跳過，因為 modal 已經處理了取消
-                return;
-            }
-
-            // 將編號轉換為索引 (編號 1 对应索引 0)
-            const newIndex = parseInt(index) - 1; 
-            const max = vocabData.length;
-            
-            // 檢查範圍
-            if (newIndex >= 0 && newIndex < max) {
-                cardIndex = newIndex;
-                renderCard();
-                return true; // 跳轉成功
-            } else {
-                // 顯示錯誤訊息 (暫時使用 modal 內的 message 或簡單的方式)
-                jumpModalMessage.textContent = `輸入錯誤！請輸入 1 到 ${max} 之間的有效數字。`;
-                jumpModalMessage.classList.add('text-red-600', 'font-bold');
-                jumpInput.value = '';
-                return false; // 跳轉失敗
-            }
-        }
-        
-        function showJumpModal() {
-            jumpModal.classList.remove('hidden');
-            jumpModalMessage.textContent = `請輸入編號 (1 到 ${vocabData.length}):`;
-            jumpModalMessage.classList.remove('text-red-600', 'font-bold');
-            jumpInput.value = cardIndex + 1; // 預設為當前編號
-            jumpInput.focus();
-        }
-
-        function hideJumpModal() {
-            jumpModal.classList.add('hidden');
-        }
-
-        // --- 事件監聽器 ---
-
-        cardJumpBtn.addEventListener('click', showJumpModal);
-
-        jumpCancel.addEventListener('click', hideJumpModal);
-
-        jumpConfirm.addEventListener('click', () => {
-            const cardNum = jumpInput.value;
-            if (goToCard(cardNum)) {
-                hideJumpModal();
-            }
-        });
-        
-        // 允許按 Enter 鍵確定
-        jumpInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                jumpConfirm.click();
-            }
-        });
-
-
-        cardPrevBtn.addEventListener('click', () => {
-            if (cardIndex > 0) {
-                cardIndex--;
-                renderCard();
-            }
-        });
-
-        cardNextBtn.addEventListener('click', () => {
-            if (cardIndex < vocabData.length - 1) {
-                cardIndex++;
-                renderCard();
-            }
-        });
-        
-        // --- Tooltip 邏輯 (共用) ---
-        let tooltipElement = null;
-
-        function showTooltip(wordElement) {
-            const translation = wordElement.getAttribute('data-translation');
-            if (!translation) return;
-
-            // 移除舊的 tooltip
-            if (tooltipElement) tooltipElement.remove();
-
-            // 創建新的 tooltip
-            tooltipElement = document.createElement('div');
-            tooltipElement.className = 'word-tooltip';
-            tooltipElement.textContent = translation;
-            
-            document.body.appendChild(tooltipElement);
-
-            // 計算位置
-            const rect = wordElement.getBoundingClientRect();
-            const bodyScrollTop = window.scrollY || document.documentElement.scrollTop;
-            
-            // 將 tooltip 放置在單詞上方並水平居中
-            tooltipElement.style.left = (rect.left + rect.width / 2) + 'px';
-            tooltipElement.style.top = (rect.top + bodyScrollTop - 10) + 'px'; 
-
-            tooltipElement.style.opacity = '1';
-        }
-
-        function hideTooltip() {
-            if (tooltipElement) {
-                tooltipElement.style.opacity = '0';
-                setTimeout(() => {
-                    if (tooltipElement) tooltipElement.remove();
-                    tooltipElement = null;
-                }, 200); // 配合 CSS 轉換時間
-            }
-        }
-
-        // 使用事件委派 (Event Delegation) 監聽整個頁面，但只針對 .context-word
-        document.addEventListener('mouseover', (e) => {
-            const target = e.target.closest('.context-word');
-            if (target) {
-                showTooltip(target);
-            }
-        });
-
-        document.addEventListener('mouseout', (e) => {
-            const target = e.target.closest('.context-word');
-            if (target) {
-                if (!target.contains(e.relatedTarget)) {
-                    hideTooltip();
-                }
-            } else {
-                hideTooltip();
-            }
-        });
-        
-        window.addEventListener('scroll', hideTooltip);
-        window.addEventListener('resize', hideTooltip);
-
-
-        // --- 情境測驗模式邏輯 (Quiz) ---
-        let quizLength = 20; // 預設 20 題
-        let quizData = [];
-        let quizIndex = 0;
-        let selectedAnswer = null;
-        let isAnswered = false;
-        let correctCount = 0;
-
-        const quizSettings = document.getElementById('quiz-settings');
-        const quizContent = document.getElementById('quiz-content');
-        const quizLengthOptions = document.querySelectorAll('.quiz-length-btn');
-        const startQuizBtn = document.getElementById('start-quiz-btn');
-        
-        const quizProgress = document.getElementById('quiz-progress');
-        const quizScenario = document.getElementById('quiz-scenario');
-        const quizOptionsContainer = document.getElementById('quiz-options-container');
-        const quizFeedback = document.getElementById('quiz-feedback');
-        const quizNextBtn = document.getElementById('quiz-next-btn');
-        const quizTranslationBox = document.getElementById('quiz-translation-box');
-        const quizScenarioEnglishResult = document.getElementById('quiz-scenario-english-result');
-        const quizScenarioChineseResult = document.getElementById('quiz-scenario-chinese-result');
-
         // 設置預設選中狀態和按鈕啟用狀態
         window.onload = () => {
             renderCard();
-            // 設置預設選中狀態和按鈕啟用狀態
-        window.onload = () => {
-            renderCard();
 
-            // *** 新增的字典查詢邏輯 (確保 DOM 元素已載入) ***
-            const wordInput = document.getElementById('word-input');
-            const lookupBtn = document.getElementById('lookup-btn');
-
-            if (lookupBtn && wordInput) {
-                function lookupWord() {
-                    const word = wordInput.value.trim();
-                    if (word) {
-                        const oxfordUrl = `https://www.oxfordlearnersdictionaries.com/definition/english/${word}`;
-                        // 在新視窗/標籤頁中開啟查詢結果
-                        window.open(oxfordUrl, '_blank');
-                        wordInput.value = '';
-                    } else {
-                        alert("請輸入要查詢的單字！");
-                    }
+            // *** 修正後的事件綁定：確保所有按鈕都能點擊 ***
+            
+            // 1. 卡片導航和跳轉按鈕
+            document.getElementById('card-prev-btn').addEventListener('click', () => {
+                if (cardIndex > 0) {
+                    cardIndex--;
+                    renderCard();
                 }
-                // 附加點擊事件
+            });
+
+            document.getElementById('card-next-btn').addEventListener('click', () => {
+                if (cardIndex < vocabData.length - 1) {
+                    cardIndex++;
+                    renderCard();
+                }
+            });
+            
+            const cardJumpBtn = document.getElementById('card-jump-btn');
+            if(cardJumpBtn) cardJumpBtn.addEventListener('click', showJumpModal);
+            
+            const jumpCancel = document.getElementById('jump-cancel');
+            if(jumpCancel) jumpCancel.addEventListener('click', hideJumpModal);
+
+            const jumpConfirm = document.getElementById('jump-confirm');
+            if(jumpConfirm) jumpConfirm.addEventListener('click', () => {
+                const cardNum = jumpInput.value;
+                if (goToCard(cardNum)) {
+                    hideJumpModal();
+                }
+            });
+            
+            // 允許按 Enter 鍵確定 (需找到 jumpInput)
+            const jumpInput = document.getElementById('jump-input');
+            if(jumpInput) jumpInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    document.getElementById('jump-confirm').click();
+                }
+            });
+            
+            // 2. 字典查詢按鈕
+            const lookupBtn = document.getElementById('lookup-btn');
+            if (lookupBtn) {
                 lookupBtn.addEventListener('click', lookupWord);
             }
-            // *** 字典查詢邏輯結束 ***
             
-            // 初始化測驗設定
-            quizLengthOptions.forEach(btn => {
-                // ...
-            });
-        };
-            // 初始化測驗設定
+            // 3. 測驗初始化 (修正：新增 startQuizBtn 的事件綁定)
+            const startQuizBtn = document.getElementById('start-quiz-btn');
+            if(startQuizBtn) {
+                startQuizBtn.addEventListener('click', startQuiz);
+            }
+            
+            // 設置預設選中狀態和按鈕啟用狀態
             quizLengthOptions.forEach(btn => {
                 if (parseInt(btn.getAttribute('data-length')) === 20) {
                     btn.classList.add('bg-blue-500', 'text-white');
                     startQuizBtn.disabled = false;
                 }
+                
+                btn.addEventListener('click', () => {
+                    // 移除所有按鈕的 active 狀態
+                    quizLengthOptions.forEach(b => {
+                        b.classList.remove('bg-blue-500', 'text-white');
+                        b.classList.add('bg-gray-200', 'text-gray-700');
+                    });
+                    
+                    // 設置點擊按鈕的 active 狀態
+                    btn.classList.add('bg-blue-500', 'text-white');
+                    btn.classList.remove('bg-gray-200', 'text-gray-700');
+                    
+                    quizLength = parseInt(btn.getAttribute('data-length'));
+                    startQuizBtn.disabled = false;
+                    quizProgress.textContent = `測驗題 1 / ${quizLength}`;
+                });
             });
         };
-
-
-        // 題數選擇邏輯
-        quizLengthOptions.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // 移除所有按鈕的 active 狀態
-                quizLengthOptions.forEach(b => {
-                    b.classList.remove('bg-blue-500', 'text-white');
-                    b.classList.add('bg-gray-200', 'text-gray-700');
-                });
-                
-                // 設置點擊按鈕的 active 狀態
-                btn.classList.add('bg-blue-500', 'text-white');
-                btn.classList.remove('bg-gray-200', 'text-gray-700');
-                
-                quizLength = parseInt(btn.getAttribute('data-length'));
-                startQuizBtn.disabled = false;
-                // 更新測驗進度顯示 (在 settings 頁面)
-                quizProgress.textContent = `測驗題 1 / ${quizLength}`;
-            });
-        });
-
-        // 開始測驗按鈕
-        startQuizBtn.addEventListener('click', () => {
-            startQuiz();
-        });
-
-
-        function getChineseTranslation(englishContext) {
-            const vocab = vocabData.find(v => v.englishContext === englishContext);
-            return vocab ? vocab.chineseContext : '無法找到翻譯。';
-        }
-
-        function generateQuizData(n) {
-            const shuffled = [...vocabData].sort(() => 0.5 - Math.random());
-            const questions = [];
-
-            const actualQuizLength = Math.min(n, vocabData.length);
-            const availableQuestions = shuffled.slice(0, actualQuizLength); 
-
-            for (let i = 0; i < availableQuestions.length; i++) {
-                const correctAnswer = availableQuestions[i];
-                
-                let allVocabs = [...vocabData];
-                allVocabs = allVocabs.filter(v => v.english !== correctAnswer.english);
-
-                const randomIncorrect = allVocabs.sort(() => 0.5 - Math.random()).slice(0, 3);
-                
-                let options = [correctAnswer, ...randomIncorrect];
-                options = options.sort(() => 0.5 - Math.random()); 
-
-                questions.push({
-                    scenario: correctAnswer.englishContext,
-                    correctEnglish: correctAnswer.english,
-                    chineseTranslation: correctAnswer.chineseContext,
-                    options: options.map(opt => ({ english: opt.english, isCorrect: opt.english === correctAnswer.english }))
-                });
-            }
-            return questions;
-        }
-
-        function renderQuiz() {
-            if (quizIndex >= quizData.length) {
-                showQuizResult();
-                return;
-            }
-            const currentQuiz = quizData[quizIndex];
-
-            isAnswered = false;
-            selectedAnswer = null;
-            quizFeedback.classList.add('hidden');
-            quizTranslationBox.classList.remove('show');
-            quizNextBtn.disabled = true;
-            quizOptionsContainer.innerHTML = '';
-            
-            quizProgress.textContent = `測驗題 ${quizIndex + 1} / ${quizData.length}`;
-            quizScenario.innerHTML = currentQuiz.scenario;
-
-            currentQuiz.options.forEach((option) => {
-                const div = document.createElement('div');
-                div.className = 'quiz-option bg-white';
-                div.innerHTML = `<span class="option-english">${option.english}</span><span class="option-chinese"></span>`;
-                div.setAttribute('data-english', option.english);
-                div.addEventListener('click', handleAnswer);
-                quizOptionsContainer.appendChild(div);
-            });
-        }
         
-        function handleAnswer(event) {
-            if (isAnswered) return;
-            isAnswered = true;
-
-            const selectedOptionDiv = event.target.closest('.quiz-option');
-            if (!selectedOptionDiv) return;
-
-            selectedAnswer = selectedOptionDiv.getAttribute('data-english');
-            const currentQuiz = quizData[quizIndex];
-            
-            const isCorrect = selectedAnswer === currentQuiz.correctEnglish;
-            if (isCorrect) {
-                correctCount++;
-            }
-            
-            Array.from(quizOptionsContainer.children).forEach(optionDiv => {
-                const english = optionDiv.getAttribute('data-english');
-                const chinese = getCoreChineseTranslation(english);
-                
-                const chineseSpan = optionDiv.querySelector('.option-chinese');
-                if (chineseSpan) {
-                    chineseSpan.textContent = `(${chinese})`;
-                    chineseSpan.style.opacity = '1';
-                }
-
-                optionDiv.classList.remove('bg-white', 'hover:bg-gray-300');
-                optionDiv.style.cursor = 'default';
-
-                if (english === currentQuiz.correctEnglish) {
-                    optionDiv.classList.add('correct');
-                } else if (english === selectedAnswer) {
-                    optionDiv.classList.add('incorrect');
-                } else {
-                    optionDiv.classList.add('bg-gray-100', 'text-gray-600');
-                }
-            });
-
-            quizFeedback.classList.remove('hidden');
-            if (isCorrect) {
-                quizFeedback.className = 'mt-6 p-3 rounded-lg text-left bg-green-50 text-green-700 font-bold';
-                quizFeedback.innerHTML = '✅ 答對了！情境運用正確。';
-            } else {
-                quizFeedback.className = 'mt-6 p-3 rounded-lg text-left bg-red-50 text-red-700 font-bold';
-                quizFeedback.innerHTML = `❌ 答錯了... **正確答案是：${currentQuiz.correctEnglish}**`;
-            }
-
-            quizScenarioEnglishResult.innerHTML = renderContextWithTooltips(currentQuiz.scenario);
-            quizScenarioChineseResult.textContent = currentQuiz.chineseTranslation;
-            quizTranslationBox.classList.add('show');
-            
-            quizScenario.innerHTML = quizScenarioEnglishResult.innerHTML; 
-
-            quizNextBtn.disabled = false;
-        }
-
-        function showQuizResult() {
-            const score = correctCount;
-
-            quizProgress.textContent = '測驗完成！';
-            quizScenario.textContent = `您總共答對了 ${correctCount} 題！`;
-            quizTranslationBox.classList.remove('show');
-            quizOptionsContainer.innerHTML = `
-                <div class="text-center mt-8 p-6 bg-blue-50 rounded-xl border border-blue-200">
-                    <p class="text-3xl font-extrabold text-blue-600 mb-4">測驗結果</p>
-                    <p class="text-xl text-gray-700">您完成了所有 ${quizData.length} 題情境測驗。</p>
-                    <p class="text-2xl font-bold text-indigo-700 mt-3">總分：${score} / ${quizData.length}</p>
-                    <button onclick="resetQuizSettings()" class="vibe-button bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-6 rounded-lg mt-6">
-                        重新選擇題數 🔁
-                    </button>
-                </div>
-            `;
-            quizFeedback.classList.add('hidden');
-            quizNextBtn.classList.add('hidden');
-            correctCount = 0;
-        }
-
-        quizNextBtn.addEventListener('click', () => {
-            if (quizData[quizIndex] && selectedAnswer) {
-                quizData[quizIndex].userAnswer = selectedAnswer;
-            }
-            quizIndex++;
-            renderQuiz();
-        });
-
-        function startQuiz() {
-            if (vocabData.length < 4) {
-                quizOptionsContainer.innerHTML = '<p class="text-red-500 font-bold">⚠️ 詞彙量不足 (需至少 4 個)，無法生成有效測驗。請先增加詞彙卡數量。</p>';
-                quizProgress.textContent = '錯誤';
-                quizNextBtn.classList.add('hidden');
-                return;
-            }
-            
-            // 隱藏設定，顯示測驗內容
-            quizSettings.classList.add('hidden');
-            quizContent.classList.remove('hidden');
-
-            quizData = generateQuizData(quizLength);
-            quizIndex = 0;
-            correctCount = 0;
-            quizNextBtn.classList.remove('hidden');
-            renderQuiz();
-        }
-        
-        function resetQuizSettings() {
-            // 顯示設定，隱藏測驗內容
-            quizSettings.classList.remove('hidden');
-            quizContent.classList.add('hidden');
-            // 重置進度顯示
-            quizProgress.textContent = `測驗題 1 / ${quizLength}`;
-        }
-
-    </script>
+    </script>
 </body>
 </html>
